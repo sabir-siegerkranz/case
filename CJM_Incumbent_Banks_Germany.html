@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Journey Map — German Incumbent Banks</title>
+<style>
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+    background: #f5f4f0;
+    padding: 28px 24px 48px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+  }
+  .page-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 18px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #444;
+  }
+  .leg { display: flex; align-items: center; gap: 6px; }
+  .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .d-sp { background: #2E7BC4; }
+  .d-vb { background: #4A8C1C; }
+  .d-cb { background: #C47A1A; }
+  .d-db { background: #6B5FD4; }
+  .d-ing { background: #128060; }
+
+  .mood-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    color: #555;
+    align-items: center;
+  }
+  .mk { display: flex; align-items: center; gap: 5px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  .b-pos { background: #d4edda; color: #1a5c2a; }
+  .b-mix { background: #fff3cd; color: #7a5500; }
+  .b-neg { background: #f8d7da; color: #8b1a1a; }
+
+  /* ── MAIN TABLE ─────────────────────────────────────── */
+  .scroll-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.10);
+    background: #fff;
+  }
+
+  table {
+    border-collapse: collapse;
+    /* columns: stage 190px + 5 banks × 270px = 1540px */
+    width: 1540px;
+    min-width: 1540px;
+    table-layout: fixed;
+  }
+
+  /* ── COLUMN WIDTHS ── */
+  col.c-stage { width: 190px; }
+  col.c-bank  { width: 270px; }
+
+  /* ── HEADER ROW ── */
+  thead tr th {
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    border-bottom: 2px solid rgba(0,0,0,.12);
+    border-right: 0.5px solid rgba(0,0,0,.10);
+  }
+  thead tr th.corner {
+    text-align: left;
+    background: #f0ede6;
+    color: #555;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    position: sticky;
+    left: 0;
+    z-index: 4;
+  }
+  .th-sp  { background: #dbeeff; color: #0a3d70; }
+  .th-vb  { background: #ddf0d0; color: #1c4a08; }
+  .th-cb  { background: #fef0d0; color: #5a3600; }
+  .th-db  { background: #eceafe; color: #2d2680; }
+  .th-ing { background: #d0f0e6; color: #05432e; }
+
+  /* ── BODY CELLS ── */
+  tbody tr td {
+    padding: 14px 16px;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 1.65;
+    color: #222;
+    border-right: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #e0ddd5;
+  }
+
+  /* sticky stage column */
+  tbody tr td.stage-cell {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #f5f3ee;
+    border-right: 2px solid #d4cfc4;
+    padding: 16px 18px;
+    vertical-align: middle;
+  }
+  tbody tr:nth-child(even) td { background: #fafaf8; }
+  tbody tr:nth-child(even) td.stage-cell { background: #eeeae2; }
+
+  .stage-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  .stage-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .stage-sub {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.45;
+  }
+
+  /* pain point divider */
+  .pain {
+    font-size: 11px;
+    color: #666;
+    margin-top: 9px;
+    padding-top: 8px;
+    border-top: 1px dashed #ccc;
+    line-height: 1.55;
+  }
+  .pain::before {
+    content: "⚠ ";
+    font-size: 10px;
+    color: #b85c00;
+  }
+
+  /* mood badge in cell */
+  .mood {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    letter-spacing: .02em;
+    margin-top: 7px;
+  }
+
+  /* ── FOOTER ── */
+  .footnote {
+    font-size: 10px;
+    color: #888;
+    margin-top: 18px;
+    line-height: 1.6;
+    max-width: 1540px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">Customer Journey Map — German Incumbent Banks</div>
+<div class="page-subtitle">Segment: Freiberufler, Einzelunternehmer, and microbusinesses with 1–3 employees &nbsp;|&nbsp; Task 1.1 — Qonto Market Product Owner Case Study (Germany)</div>
+
+<div class="legend">
+  <span class="leg"><span class="dot d-sp"></span>Sparkasse</span>
+  <span class="leg"><span class="dot d-vb"></span>Volksbank / Raiffeisenbank</span>
+  <span class="leg"><span class="dot d-cb"></span>Commerzbank</span>
+  <span class="leg"><span class="dot d-db"></span>Deutsche Bank / FYRST</span>
+  <span class="leg"><span class="dot d-ing"></span>ING Germany</span>
+</div>
+<div class="mood-key">
+  <span class="mk"><span class="badge b-pos">positive</span> generally positive sentiment</span>
+  <span class="mk"><span class="badge b-mix">mixed</span> variable or divided sentiment</span>
+  <span class="mk"><span class="badge b-neg">friction</span> documented dissatisfaction</span>
+  <span style="color:#999;font-size:11px">⚠ = key pain point</span>
+</div>
+
+<div class="scroll-wrap">
+<table>
+<colgroup>
+  <col class="c-stage">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+</colgroup>
+<thead>
+<tr>
+  <th class="corner">Stage</th>
+  <th class="th-sp">Sparkasse</th>
+  <th class="th-vb">Volksbank / Raiffeisenbank</th>
+  <th class="th-cb">Commerzbank</th>
+  <th class="th-db">Deutsche Bank / FYRST</th>
+  <th class="th-ing">ING Germany</th>
+</tr>
+</thead>
+<tbody>
+
+<!-- STAGE 1 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 1</div>
+  <div class="stage-name">Awareness</div>
+  <div class="stage-sub">How the bank enters the sole proprietor's consideration set</div>
+</td>
+<td>
+  Pre-existing private account relationship; local brand omnipresence; referrals from Handwerker networks and trade associations; Sparkasse-sponsored Gründer events at regional level.
+  <br><span class="badge b-pos">passive pull</span>
+  <div class="pain">Sole proprietors rarely actively choose — they extend an existing private account into business use. The bank is inherited, not selected. Active competitor comparison almost never happens at this stage.</div>
+</td>
+<td>
+  Multi-generational trade relationships concentrated in rural areas; referrals from Handwerkskammer and cooperative networks; cooperative membership culture in craft and artisan sectors.
+  <br><span class="badge b-pos">community pull</span>
+  <div class="pain">Visibility is structurally limited outside rural and trade contexts. Urban Freiberufler rarely encounter Volksbank organically — the bank does not advertise for this segment at national scale.</div>
+</td>
+<td>
+  National advertising campaigns; Unternehmerperspektiven study coverage in business press; comparison platform listings; dedicated Gründer discount campaigns.
+  <br><span class="badge b-mix">brand awareness</span>
+  <div class="pain">Discovery via comparison platforms frequently leads to fee sticker shock before the value of relationship banking is understood. Awareness does not automatically convert to positive evaluation.</div>
+</td>
+<td>
+  Deutsche Bank: heritage brand and international reputation drives passive awareness. FYRST: strong SEO presence on Geschäftskonto comparison platforms; "kostenlos für Freiberufler" messaging immediately legible.
+  <br><span class="badge b-mix">dual-brand complexity</span>
+  <div class="pain">Many prospective customers unclear whether they are banking with Deutsche Bank, FYRST, or Postbank. The three-brand architecture creates confusion at first contact and reduces perceived institutional clarity.</div>
+</td>
+<td>
+  Cross-sell from 9 million existing private customers; strong SEO coverage for Gründer and Freiberufler queries; established Direktbank brand trust from private banking context.
+  <br><span class="badge b-pos">trusted pull</span>
+  <div class="pain">Business banking launched September 2024 — limited organic word-of-mouth at time of writing. Business-specific marketing campaigns still maturing. Many existing ING private customers unaware the business product exists.</div>
+</td>
+</tr>
+
+<!-- STAGE 2 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 2</div>
+  <div class="stage-name">Consideration & research</div>
+  <div class="stage-sub">Fee comparison and evaluation before deciding</div>
+</td>
+<td>
+  Comparison platform reviews; conversation with regional branch advisor; peer referrals. Regional fee variation makes systematic online comparison difficult — no national price page.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">No nationally consistent pricing means fee research requires contacting or visiting the specific local institution. A Sparkasse in Munich may price differently from one in Hamburg for identical services.</div>
+</td>
+<td>
+  Fee structures not publicly standardised across approximately 659 independent institutions. No national comparison page exists. Must request information from the local branch or call ahead before any fee can be confirmed.
+  <br><span class="badge b-neg">friction</span>
+  <div class="pain">Inability to obtain a fee quote without a branch visit is a structural barrier vs. digital-first competitors. The research phase is unusually opaque relative to every other player reviewed.</div>
+</td>
+<td>
+  Online fee calculator and clear three-tier structure (Klassik / Premium / PremiumPlus) publicly available. Gründer introductory pricing on Premium (€8.90 for 24 months) is prominently communicated.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Comparison platforms consistently flag high base fees versus neobank alternatives. Positive evaluation requires the prospect to already believe in relationship banking value — a belief less common among younger Freiberufler.</div>
+</td>
+<td>
+  Deutsche Bank: wide product suite creates decision complexity for simple sole-proprietor use cases. FYRST: clean one-page pricing; free tier for Freiberufler immediately legible on comparison platforms.
+  <br><span class="badge b-pos">FYRST clear</span>
+  <div class="pain">FYRST's V-Pay card limitations, the Schufa check requirement, and the three-way Deutsche Bank / Postbank / FYRST back-end are not visible at the research stage — discovered only post-onboarding.</div>
+</td>
+<td>
+  Pricing page transparent; Bestpreis-Garantie prominently explained; 6-month or 12-month (founders) free period clearly stated upfront. Strong presence on comparison platforms from launch.
+  <br><span class="badge b-pos">positive</span>
+  <div class="pain">As a new product, long-term independent user reviews are thin at the point of research. Prospective customers cannot yet rely on a large community of testimonials to corroborate the bank's self-presentation.</div>
+</td>
+</tr>
+
+<!-- STAGE 3 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 3</div>
+  <div class="stage-name">Onboarding & account opening</div>
+  <div class="stage-sub">From decision to a fully functional account</div>
+</td>
+<td>
+  Online application possible at some regional institutions; identity verification via Video-Ident, Post-Ident, or in-branch visit (varies by institution). Card and PIN dispatched by post separately. Typical timeline: 1–2 weeks.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Branch-only verification still required at many Sparkassen. Card and PIN arrive separately by post — first card use is delayed. Timeline varies widely and is not predictable during research.</div>
+</td>
+<td>
+  In-person branch appointment mandatory at nearly all Volksbanken — no online account opening path exists. Required documents: ID, Steuernummer, Gewerbeanmeldung where applicable. Account typically active within a few days of the branch visit.
+  <br><span class="badge b-neg">friction</span>
+  <div class="pain">Sole proprietors must take time off work to visit a branch during business hours. No digital alternative is available regardless of how simple the entity structure. The most restrictive onboarding process of any player reviewed.</div>
+</td>
+<td>
+  Online account opening available for Freiberufler and Einzelunternehmer; Video-Ident supported. GmbH and UG still require a branch visit. The Gründer introductory pricing is communicated at the point of application.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Online process involves multiple document uploads with limited real-time status feedback — customers often unsure whether their application is progressing. Legal entities beyond sole traders must still visit a branch.</div>
+</td>
+<td>
+  Deutsche Bank: branch appointment required for main account products. FYRST: fully digital; Schufa check conducted upfront; stated timeline a few business days. Documented issue: conflicts between FYRST, Postbank, and Deutsche Bank systems during setup; BestSign app authentication failures reported.
+  <br><span class="badge b-neg">FYRST fragile</span>
+  <div class="pain">Trustpilot reviews document accounts inaccessible for days immediately after opening due to BestSign authentication failures and IT system conflicts across the three-entity architecture. The worst onboarding experience of the five banks for early adopters.</div>
+</td>
+<td>
+  Fully digital via Video-Ident or Post-Ident; stated time approximately 20 minutes. Account accessible online immediately after verification. Debit card dispatched by post afterward.
+  <br><span class="badge b-pos">positive</span>
+  <div class="pain">Minimum 6 months of trading history required (waived for first-year founders). GbR and UG are excluded from eligibility entirely. Debit card still requires postal delivery — not instant as with neobanks like Qonto or N26.</div>
+</td>
+</tr>
+
+<!-- STAGE 4 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 4</div>
+  <div class="stage-name">Daily banking usage</div>
+  <div class="stage-sub">Routine payments, transfers, card use, account management</div>
+</td>
+<td>
+  Full-featured online banking (desktop and Sparkasse Business app); instant SEPA available; nationwide ATM network free of charge; per-transaction fees apply (approx. €1.29 per outgoing SEPA transfer at many institutions).
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Per-transaction fees accumulate materially for users with more than 20–30 transactions per month. Online banking reliability criticised in reviews. No sub-accounts included by default. No spending analytics. No invoicing tool.</div>
+</td>
+<td>
+  VR-Banking app for mobile and desktop; beleghafte (paper-based) transactions supported at branches; free ATM withdrawals within the cooperative network; DATEV-export accessible via EBICS at most institutions.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Digital experience lags competitors. Per-transaction fees apply at most institutions. No real-time push notifications at most Volksbanken. Branch still expected for document-based transactions — not practical for digitally-native Freiberufler.</div>
+</td>
+<td>
+  Online banking rated above other incumbents on usability (app rated 7/10 in independent reviews); 10 free postings per month in Klassik; €0.20 per posting thereafter; Cash Group ATMs free of charge.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">10 free postings exhausted quickly by active Freiberufler sending invoices weekly. No sub-accounts, no spending analytics, no invoicing. App described as "basic" compared with modern fintechs — lacks features competitors offer at lower prices.</div>
+</td>
+<td>
+  FYRST: 50 free beleglose Buchungen per month; Cash Group ATMs free; no Apple Pay or Google Pay on V-Pay Girocard; no sub-accounts included in either tier; no in-app invoicing.
+  <br><span class="badge b-neg">V-Pay friction</span>
+  <div class="pain">FYRST's V-Pay Girocard fails on many international websites and online merchants. Mastercard Debit alternative costs extra. Multiple Trustpilot reviews cite the card failing randomly abroad and during online purchases — one reviewer uses the account solely for its DATEV interface despite these failures.</div>
+</td>
+<td>
+  Instant SEPA transfers 24/7; 3 free ATM withdrawals per month; Visa Business Debit accepted across European merchants; built-in Rechnungsmanager for invoicing and receipt capture; up to 5 sub-accounts with individual IBANs included free.
+  <br><span class="badge b-pos">positive</span>
+  <div class="pain">No non-SEPA international transfers — excludes internationally active sole proprietors entirely. No Kontokorrentkredit or overdraft. PSD2-only accounting link — no native DATEV integration. Some roadmap features (e.g. B2B Lastschrift) still pending at time of writing.</div>
+</td>
+</tr>
+
+<!-- STAGE 5 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 5</div>
+  <div class="stage-name">Accounting & tax workflow</div>
+  <div class="stage-sub">DATEV, Steuerberater handoff, VAT returns, receipt management</div>
+</td>
+<td>
+  DATEV-compatible data export via EBICS or banking interface available at most institutions — requires setup with a branch advisor. No native invoicing. No VAT tracking. Manual CSV or PDF statement export remains the default workflow for most sole proprietors.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Real-time DATEV sync requires additional manual configuration steps. No built-in receipt capture. No invoice tool. Interface availability and quality varies significantly by regional institution — not a standardised feature.</div>
+</td>
+<td>
+  DATEV export via EBICS or banking interface available at most Volksbanken. No native invoicing. No VAT tracking. Monthly statement export manually initiated in most cases.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Same structural gaps as Sparkasse. Some institutions require a branch interaction to configure the accounting interface. No receipt capture, no VAT calculation, no invoicing tool — the complete accounting workflow remains external.</div>
+</td>
+<td>
+  DATEV interface accessible via Commerzbank banking software. Partner discount arrangements with sevDesk and Lexoffice exist but no product integration. No native invoicing. No VAT tracking or USt-VA support.
+  <br><span class="badge b-neg">friction</span>
+  <div class="pain">Bureaucracy reduction is the #1 pain point for SMEs in Commerzbank's own 2025 Unternehmerperspektiven research. The bank's product does not address it. The full accounting workflow is outsourced to the Steuerberater or a third-party tool at additional cost.</div>
+</td>
+<td>
+  FYRST: interfaces with sevDesk, Lexoffice, and Sage via partner agreements with discounts; WISO EÜR-compatible export available. No in-app invoicing. No VAT tracking.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">DATEV connection is PSD2-only — no DATEVconnect or EBICS direct integration. Praised by users when functioning; reliability tied to FYRST's underlying IT stability, which has been variable. One Trustpilot reviewer states: "I only use Fyrst because of my tax advisor, and it has a Schnittstelle to DATEV — when it works it is good."</div>
+</td>
+<td>
+  PSD2 interface connects to DATEV Unternehmen online, Lexware, and sevDesk. Built-in Rechnungsmanager supports invoice creation and receipt digitisation; receipt sharing with Steuerberater mentioned in product documentation. No native VAT calculation or USt-VA filing.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">PSD2 link requires third-party tools to complete the Steuerberater-to-DATEV workflow — it is not a native integration. Manual setup steps required, as documented in ING FAQ. No VAT tracking or quarterly return support built in.</div>
+</td>
+</tr>
+
+<!-- STAGE 6 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 6</div>
+  <div class="stage-name">Customer support & advisor contact</div>
+  <div class="stage-sub">Hotlines, branch advisors, email, live chat</div>
+</td>
+<td>
+  Dedicated personal advisor at the account-holding branch; phone hotline with callback service; live chat at some institutions; branch visit for complex matters. Advisory available only at the local Sparkasse — cannot use another branch while travelling.
+  <br><span class="badge b-pos">positive (regional)</span>
+  <div class="pain">Advisor quality varies significantly by region and individual. Branch-only advisory means no access while away. Some advisors highly praised in reviews; others reported as unavailable or quietly replaced by call-centre arrangements.</div>
+</td>
+<td>
+  Dedicated business advisor at local branch; strong advisory reputation for Gründer support, KfW financing, and Fördermittel access; phone and email channels available. Consistently rated highly for SME advisory quality on comparison platforms.
+  <br><span class="badge b-pos">positive</span>
+  <div class="pain">Branch-only model — no effective phone advisory without a pre-existing branch relationship at most institutions. No 24/7 or digital channel. Rural advisors consistently well-rated; urban experience more variable. Formal business hours only.</div>
+</td>
+<td>
+  Shared business advisory centre replaces dedicated advisors for small-account customers; phone Mon–Fri 08:00–20:00; email; online appointment booking. No assigned personal advisor for sole proprietors and micro-firms.
+  <br><span class="badge b-neg">friction</span>
+  <div class="pain">The removal of dedicated personal advisors for small firms is the single most frequently cited complaint in published reviews. One review: "KATASTROPHE!!!! Und wenn ihr nicht eine Riesige Firma sind, die Hände weg!!!!" (20+ years as a customer). Shared advisory provides generic, transactional responses rather than relationship-based guidance.</div>
+</td>
+<td>
+  Deutsche Bank: branch advisor network; business advisory centre; phone Mon–Fri 08:00–20:00. FYRST: phone 08:00–17:00 Mon–Fri; email only; no branch. Both channels reported as difficult to reach during high-demand periods.
+  <br><span class="badge b-neg">FYRST friction</span>
+  <div class="pain">FYRST phone cutoff at 17:00 called "not zeitgemäß" in reviews. Email response delays documented repeatedly. No weekend channel. No physical fallback when digital issues arise. Several Trustpilot reviews escalate to threats of BaFin complaint after no response to emails about blocked funds.</div>
+</td>
+<td>
+  Business Banking Support by phone Mon–Fri 09:00–18:00; email at business@ing.de; in-app secure message box; Neukunden-Hotline for onboarding queries. No branch — entirely digital and asynchronous.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">ING's general customer service has a documented reputation for unresponsiveness: slow email replies, unreachable hotlines, and automated responses (Trustpilot and Finanzwissen reviews). Business-specific support channel is new and not yet independently reviewed at scale. Risk of the same culture applying to business customers.</div>
+</td>
+</tr>
+
+<!-- STAGE 7 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 7</div>
+  <div class="stage-name">Retention & loyalty</div>
+  <div class="stage-sub">What keeps sole proprietors from switching</div>
+</td>
+<td>
+  Hausbank relationship; local financing access (Kontokorrentkredit, property loans, KfW credit); Gründer advisory continuity; community event participation. Adding a neobank Zweitkonto without closing the Sparkasse account is the dominant retention pattern.
+  <br><span class="badge b-pos">high stickiness</span>
+  <div class="pain">Retention is relationship-based, not product-based — stickiness depends on credit facilities being in place. Price-sensitive sole proprietors with no credit need often quietly add a neobank Zweitkonto while maintaining the Sparkasse for inertia reasons.</div>
+</td>
+<td>
+  Cooperative membership and profit-sharing; multi-year personal advisor relationship; deep Mittelstand financing capability; KfW credit access via the local genossenschaftliche relationship.
+  <br><span class="badge b-pos">high stickiness</span>
+  <div class="pain">Stickiness concentrated among established, financing-dependent businesses. Younger, digitally-native Freiberufler see no product compelling enough to prevent Zweitkonto migration to a neobank. No digital-only feature competes with neobank pricing.</div>
+</td>
+<td>
+  Brand familiarity; Premium plan 24-month introductory pricing creates switching inertia during the discount window; annual Unternehmerperspektiven study positions Commerzbank as an engaged SME partner.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">Loss of personal advisor is a documented churn driver for small firms. After the 24-month introductory Premium period expires (€8.90 → €34.90/month), the price jump forces active re-evaluation of the full relationship — typically for the first time.</div>
+</td>
+<td>
+  Deutsche Bank: international reach, corporate credit products, Global Hausbank positioning for larger clients. FYRST: €0 base tier retains cost-sensitive users; sevDesk / Lexoffice accounting workflow partnerships create stickiness once integrated.
+  <br><span class="badge b-mix">mixed</span>
+  <div class="pain">FYRST retention is fragile — dependent on IT stability. Trustpilot shows churn narratives closely following unresolved IT incidents. Deutsche Bank's strength in large corporate segments creates minimal retention value for solo Freiberufler who need none of those capabilities.</div>
+</td>
+<td>
+  Bestpreis-Garantie removes ongoing monthly price anxiety. Geschäftskredit tie-in creates stickiness once drawn upon. Business Extra-Konto (Tagesgeld) adds product depth. Private-to-business cross-sell is an asset not available to neobanks starting from scratch.
+  <br><span class="badge b-mix">too early to assess</span>
+  <div class="pain">Product launched September 2024 — long-term retention patterns not yet observable. No dedicated account-switching service for the Geschäftskonto. No overdraft means actively growing businesses eventually encounter a capability ceiling and are pushed toward competitors.</div>
+</td>
+</tr>
+
+<!-- STAGE 8 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 8</div>
+  <div class="stage-name">Churn triggers & exit</div>
+  <div class="stage-sub">Why customers leave or open a Zweitkonto elsewhere</div>
+</td>
+<td>
+  High per-transaction fees for high-volume users; expensive for digital-only workflows; absence of invoicing, native DATEV, and VAT tools. Opening a neobank Zweitkonto without fully closing the Sparkasse is the dominant exit pattern — partial churn rather than full exit.
+  <br><span class="badge b-mix">partial churn</span>
+  <div class="pain">Full exit typically triggered only when a credit relationship ends, the business closes, or the owner relocates outside the branch's geographic coverage area. The Sparkasse rarely loses sole proprietors entirely — they are diluted, not departed.</div>
+</td>
+<td>
+  In-person-only model becomes untenable as the business operates more digitally; high fees relative to neobanks; mandatory branch visits for any account changes; complete absence of digital-only workflow support.
+  <br><span class="badge b-neg">friction triggers</span>
+  <div class="pain">Churn most likely among digitally-native Freiberufler who resent mandatory branch visits and see no product merit in the relationship. Trade-sector SMEs with active financing relationships tend to stay, sometimes for decades.</div>
+</td>
+<td>
+  Post-24-month price jump (Premium: €8.90 → €34.90/month) is the most documented re-evaluation trigger. Removal of dedicated personal advisor for small accounts is the primary emotional churn driver, as evidenced by review platform sentiment.
+  <br><span class="badge b-neg">price shock + service erosion</span>
+  <div class="pain">"Hände weg für kleine Firmen" is the documented user sentiment pattern in published reviews. Once the personal advisor is gone and the introductory price expires simultaneously, the premium cost of a Commerzbank account becomes unjustifiable against neobank alternatives for the sole-proprietor segment.</div>
+</td>
+<td>
+  FYRST: V-Pay card failures; IT integration conflicts between FYRST, Postbank, and Deutsche Bank systems; inaccessible customer support during critical periods. Users stay while the product works; they exit when a technical incident goes unresolved.
+  <br><span class="badge b-neg">support failure churn</span>
+  <div class="pain">Documented trigger: SEPA transfer blocked over a Christmas holiday period; no support response for days; customer forced to borrow money personally and could not pay rent. The resulting Trustpilot review ("STAY AWAY FROM THIS BANK") is representative of the FYRST exit narrative. Support failure, not product failure, is the primary exit driver.</div>
+</td>
+<td>
+  No Kontokorrentkredit or overdraft pushes growing businesses toward competitors. No non-SEPA international transfers excludes internationally active users structurally. Limited legal form coverage (GbR, UG excluded). Product still maturing — missing roadmap features may prompt early adopters to switch.
+  <br><span class="badge b-mix">early-stage gaps</span>
+  <div class="pain">ING's general customer service has poor responsiveness reviews — if the same culture applies to the business support channel, it will become a significant churn risk as the user base grows and encounters issues. No business-account-specific churn patterns documented yet due to product age.</div>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div class="footnote">
+  Sources: Geschäftskonten24 (January–March 2026), Für-Gründer (December 2025, March 2026), Handelsblatt Business Banking reviews (January 2026), Reisetopia (March 2026), Gruendung.de (October 2025), Trustpilot: FYRST (2024–2026), ING Deutschland (2025–2026), Finanzwissen.de ING Erfahrungen (April 2026), Commerzbank Unternehmerperspektiven 2025 (May 2025), ING press releases (September–December 2024).<br>
+  Segment: Freiberufler, Einzelunternehmer, and microbusinesses with 1–3 employees in Germany. &nbsp;|&nbsp; Document prepared for Task 1.1 — Qonto Market Product Owner Case Study.
+</div>
+
+</body>
+</html>
