@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Journey Map — Neobanks Group A</title>
+<style>
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+    background: #f5f4f0;
+    padding: 28px 24px 48px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+  }
+  .page-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 18px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #444;
+  }
+  .leg { display: flex; align-items: center; gap: 6px; }
+  .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .d-rv { background: #1a3c6e; }
+  .d-n2 { background: #3d3d3d; }
+  .d-fi { background: #c45c0a; }
+  .d-ko { background: #0a7c4a; }
+  .d-ho { background: #6b3fa0; }
+  .d-vi { background: #c4151c; }
+
+  .mood-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    color: #555;
+    align-items: center;
+  }
+  .mk { display: flex; align-items: center; gap: 5px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  .b-pos { background: #d4edda; color: #1a5c2a; }
+  .b-mix { background: #fff3cd; color: #7a5500; }
+  .b-neg { background: #f8d7da; color: #8b1a1a; }
+
+  /* ── MAIN TABLE ─────────────────────────────────────── */
+  .scroll-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.10);
+    background: #fff;
+  }
+
+  table {
+    border-collapse: collapse;
+    /* stage 190px + 6 banks × 240px = 1630px */
+    width: 1630px;
+    min-width: 1630px;
+    table-layout: fixed;
+  }
+
+  col.c-stage { width: 190px; }
+  col.c-bank  { width: 240px; }
+
+  /* ── HEADER ROW ── */
+  thead tr th {
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    border-bottom: 2px solid rgba(0,0,0,.12);
+    border-right: 0.5px solid rgba(0,0,0,.10);
+  }
+  thead tr th.corner {
+    text-align: left;
+    background: #f0ede6;
+    color: #555;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    position: sticky;
+    left: 0;
+    z-index: 4;
+  }
+  .th-rv { background: #dce8f7; color: #0d2a52; }
+  .th-n2 { background: #e8e8e8; color: #1a1a1a; }
+  .th-fi { background: #fde8d4; color: #5a2800; }
+  .th-ko { background: #d4f0e3; color: #054028; }
+  .th-ho { background: #ecdff7; color: #3a1060; }
+  .th-vi { background: #fdd8da; color: #6b0008; }
+
+  .th-sub {
+    font-size: 10px;
+    font-weight: 400;
+    color: inherit;
+    opacity: 0.75;
+    display: block;
+    margin-top: 3px;
+  }
+
+  /* ── BODY CELLS ── */
+  tbody tr td {
+    padding: 14px 16px;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 1.65;
+    color: #222;
+    border-right: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #e0ddd5;
+  }
+
+  /* sticky stage column */
+  tbody tr td.stage-cell {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #f5f3ee;
+    border-right: 2px solid #d4cfc4;
+    padding: 16px 18px;
+    vertical-align: middle;
+  }
+  tbody tr:nth-child(even) td { background: #fafaf8; }
+  tbody tr:nth-child(even) td.stage-cell { background: #eeeae2; }
+
+  .stage-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  .stage-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .stage-sub {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.45;
+  }
+
+  /* pain / critical moment */
+  .pain {
+    font-size: 11px;
+    color: #555;
+    margin-top: 9px;
+    padding-top: 8px;
+    border-top: 1px dashed #ccc;
+    line-height: 1.55;
+  }
+  .pain.crit {
+    color: #7a2e00;
+    border-top-color: #e0a070;
+  }
+  .pain::before {
+    content: "⚠ ";
+    font-size: 10px;
+    color: #b85c00;
+  }
+
+  .mood {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    letter-spacing: .02em;
+    margin-top: 7px;
+  }
+
+  /* ── FOOTER ── */
+  .footnote {
+    font-size: 10px;
+    color: #888;
+    margin-top: 18px;
+    line-height: 1.6;
+    max-width: 1630px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">Customer Journey Map — Neobanks (Group A)</div>
+<div class="page-subtitle">Segment: Freiberufler, Einzelunternehmer, and microbusinesses with 1–3 employees &nbsp;|&nbsp; Task 1.2 — Qonto Market Product Owner Case Study (Germany)</div>
+
+<div class="legend">
+  <span class="leg"><span class="dot d-rv"></span>Revolut Business</span>
+  <span class="leg"><span class="dot d-n2"></span>N26 Business</span>
+  <span class="leg"><span class="dot d-fi"></span>Finom</span>
+  <span class="leg"><span class="dot d-ko"></span>Kontist (by Shine)</span>
+  <span class="leg"><span class="dot d-ho"></span>Holvi</span>
+  <span class="leg"><span class="dot d-vi"></span>Vivid Business</span>
+</div>
+<div class="mood-key">
+  <span class="mk"><span class="badge b-pos">positive</span> generally positive sentiment</span>
+  <span class="mk"><span class="badge b-mix">mixed</span> variable or divided sentiment</span>
+  <span class="mk"><span class="badge b-neg">friction</span> documented dissatisfaction</span>
+  <span style="color:#b85c00;font-size:11px;font-weight:600">⚠ = critical moment — documented inflection point where a user is won or lost</span>
+</div>
+
+<div class="scroll-wrap">
+<table>
+<colgroup>
+  <col class="c-stage">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+  <col class="c-bank">
+</colgroup>
+<thead>
+<tr>
+  <th class="corner">Stage</th>
+  <th class="th-rv">Revolut Business<span class="th-sub">Lithuanian banking licence · BaFin oversight</span></th>
+  <th class="th-n2">N26 Business<span class="th-sub">Full BaFin banking licence · Berlin</span></th>
+  <th class="th-fi">Finom<span class="th-sub">Dutch EMI licence · Amsterdam/Berlin</span></th>
+  <th class="th-ko">Kontist by Shine<span class="th-sub">BaaS via Solaris SE · Berlin</span></th>
+  <th class="th-ho">Holvi<span class="th-sub">Finnish FIN-FSA payment institution · Helsinki</span></th>
+  <th class="th-vi">Vivid Business<span class="th-sub">BaaS via Solaris SE · Berlin</span></th>
+</tr>
+</thead>
+<tbody>
+
+<!-- STAGE 1 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 1</div>
+  <div class="stage-name">Awareness &amp; consideration</div>
+  <div class="stage-sub">How the player enters the Freiberufler's consideration set</div>
+</td>
+<td>
+  Tech-community word of mouth, expat networks, fintech comparison blogs. Consideration triggered by a specific pain point: FX charges on a foreign-currency invoice or a first non-Euro client.
+  <br><span class="mood b-mix">mixed reach</span>
+  <div class="pain">Domestically focused Freiberufler rarely discover Revolut through German-language comparison searches, where German-first competitors rank higher. Discovered primarily by internationally active users. (documented: comparison platform rankings)</div>
+</td>
+<td>
+  Strong brand presence in Germany; expat communities; comparison platforms. Consideration driven by the free tier and the BaFin licence as a trust signal.
+  <br><span class="mood b-pos">broad reach</span>
+  <div class="pain">Brand strength leads to high traffic, but the no-company-name constraint and missing tax tools mean a material share of discovered users self-select out during research. (documented: NeueBanken.de; Geschäftskonten24)</div>
+</td>
+<td>
+  German startup communities; word-of-mouth referrals; growing comparison platform presence. Consideration driven by the integrated invoicing-plus-banking proposition.
+  <br><span class="mood b-mix">community pull</span>
+  <div class="pain">Organic discovery is limited outside the startup and tech-founder segment at this stage of market presence. Less visible than N26 or Revolut on broad Freiberufler searches.</div>
+</td>
+<td>
+  Comparison platforms ranking on "Geschäftskonto Freiberufler" queries; freelancer community forums; Steuerberater-adjacent content. Narrow focus gives high relevance per impression.
+  <br><span class="mood b-pos">high relevance</span>
+  <div class="pain">Low general brand awareness outside the Freiberufler segment. Users who encounter Kontist without a tax-workflow need rarely proceed. (documented: NeueBanken.de; Geschäftskonten24)</div>
+</td>
+<td>
+  English-language Germany setup guides; expat freelancer communities; accounting software comparison pages citing DATEV and Lexware integrations.
+  <br><span class="mood b-mix">niche reach</span>
+  <div class="pain">Visibility is limited outside expat and English-speaking Freiberufler communities. Rarely discovered through mainstream German-language comparison searches at national scale.</div>
+</td>
+<td>
+  Existing Vivid consumer user base converting to business accounts; comparison platforms; in-app content on freelancer registration guidance. Reaches users at day zero of self-employment registration.
+  <br><span class="mood b-mix">conversion pull</span>
+  <div class="pain">Consumer-product history creates a trust perception gap for users who associate Vivid with personal banking rather than serious business banking. (documented: aggregated comparison platform reviews)</div>
+</td>
+</tr>
+
+<!-- STAGE 2 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 2</div>
+  <div class="stage-name">Onboarding</div>
+  <div class="stage-sub">Account opening, KYC, document requirements, first access</div>
+</td>
+<td>
+  Requires a registered company entity; director video KYC; proof of business activity. Sole traders using personal names directed to Revolut Pro. Typically 24–72 hours for incorporated businesses.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Critical Moment — Rejection without explanation: Applicants in certain business categories receive outright rejection with no reason given and no stated appeal path. For affected users, the journey ends here with no recourse. (documented: aggregated Trustpilot reviews)</div>
+</td>
+<td>
+  Under 10 minutes via mobile app with video identification. No minimum deposit. Straightforward for personal-name Freiberufler accounts.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Company name constraint surfaces at registration: Freiberufler discover the account and card will carry their personal name only, with no business name. For users expecting a professional business-facing account, this is a decisive limitation flagged by multiple comparison platforms. (documented: N26 support documentation; Geschäftskonten24)</div>
+</td>
+<td>
+  Fully digital, 10–15 minutes. Platform asks about company structure, expected transaction volumes, and business type to tailor the setup. Broad legal form coverage including GmbH and UG.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">Users report fewer onboarding rejection incidents than with Revolut or Airwallex, though no comparative data is available to quantify this. (documented: aggregated comparison platform reviews)</div>
+</td>
+<td>
+  Video-ident based, under 15 minutes. Does not require a tax number — account can be opened during the Gewerbeanmeldung process before Finanzamt registration is complete.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Tax-number-free opening: The ability to open an account before receiving a Steuernummer positions Kontist as the default choice for newly self-employed individuals in the registration window, before any competitor can reach them. (documented: Kontist product page)</div>
+</td>
+<td>
+  Digital, 10–15 minutes. Dedicated Gründerkonto enables GmbH/UG founders to deposit share capital before the commercial register extract is issued — a documented gap in most competitor offerings.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Gründerkonto for pre-registration companies: The ability to deposit share capital before commercial registration is a structural capability not offered by most neobanks. It positions Holvi as the default choice for GmbH/UG founders in the Gründungsphase. (documented: Holvi product page)</div>
+</td>
+<td>
+  Fully digital, approximately 10 minutes. In-app guidance for the Fragebogen zur steuerlichen Erfassung reaches users at the moment of self-employment registration.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Freelancer registration at day zero: Vivid accompanies users into the market from the moment of self-employment registration, not just from banking account opening — earlier in the lifecycle than any other player reviewed. (documented: Vivid product page)</div>
+</td>
+</tr>
+
+<!-- STAGE 3 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 3</div>
+  <div class="stage-name">First transaction</div>
+  <div class="stage-sub">Initial UX impression and first value delivery</div>
+</td>
+<td>
+  First international transfer or FX conversion is consistently praised for speed, real-time exchange rate visibility, and cost relative to legacy banking. First domestic SEPA transfer provides no differentiation.
+  <br><span class="mood b-mix">FX users: positive · domestic users: neutral</span>
+  <div class="pain">Users whose first transaction is a domestic SEPA transfer perceive no advantage over any other neobank. The product's differentiated value is invisible until an international payment occurs.</div>
+</td>
+<td>
+  Virtual Mastercard issued immediately upon account activation. First transfer or card payment is reported as seamless. Automatic transaction categorisation is noted positively.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">The "aha moment" at first transaction is primarily speed and simplicity — not a product-specific differentiator. Nothing in the first transaction experience communicates N26's unique strengths (BaFin licence, cashback). (documented: aggregated Trustpilot reviews)</div>
+</td>
+<td>
+  The invoicing tool is typically the first feature engaged — often before a bank transfer. The ability to create an invoice and see it matched against an incoming payment is the most consistently cited positive first experience.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Invoice-to-payment match: For Freiberufler who have previously managed invoices and banking separately, automatic reconciliation of an incoming payment against its corresponding invoice is the documented "aha moment" that drives early retention. (documented: Fintech Compass; aggregated App Store reviews)</div>
+</td>
+<td>
+  First incoming payment triggers automatic tax reserve calculation. Push notification shows the incoming amount, the estimated tax reserve, and the true disposable remainder.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Steuer-Topf activation: The real-time tax reserve notification is the most consistently cited positive feature across all Kontist reviews and is genuinely without equivalent in the market. For newly self-employed users anxious about tax obligations, this single moment is documented as the decisive retention anchor. (documented: Kontist product page; NeueBanken.de; aggregated App Store reviews)</div>
+</td>
+<td>
+  First invoice creation and SEPA payment. Incoming payments automatically matched to outstanding invoices by reference number. SEPA Instant transfers included at no extra charge across all plans.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">The invoicing match experience is similar to Finom's. The real-time VAT balance display — visible from the first transaction — is a genuinely differentiated daily signal for VAT-registered users. (documented: Holvi product page)</div>
+</td>
+<td>
+  Users who previously used a separate accounting tool report that VAT filing being accessible directly from the banking dashboard — without switching applications — is the primary satisfaction driver at first use.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain crit">⚠ Critical Moment — Free-tier VAT filing: The availability of direct VAT return submission on the free Starter tier is documented as the most differentiating feature relative to other free-tier neobank offerings. No other free business account in this comparison includes this capability. (documented: Vivid product page; aggregated user reviews)</div>
+</td>
+</tr>
+
+<!-- STAGE 4 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 4</div>
+  <div class="stage-name">Daily use</div>
+  <div class="stage-sub">Payments, receipts, sub-accounts, cards, notifications</div>
+</td>
+<td>
+  Multi-currency balance dashboard, real-time card controls, receipt attachment to transactions, team sub-accounts. Positively rated by internationally active users.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">Friction is documented for Freiberufler whose business is primarily domestic: the FX infrastructure goes unused while German-specific features (tax reserves, invoicing, DATEV) are absent. (documented: German comparison platform reviews; Finanzfluss)</div>
+</td>
+<td>
+  Push notifications, automatic categorisation, and Spaces sub-accounts (paid tiers) are well-regarded in reviews. Mobile-first interface is clean and fast.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">Absence of a desktop-optimised interface for bulk operations is a documented friction point for users managing higher transaction volumes. No sub-accounts on the free tier — requires upgrade to Smart (€4.90/month). (documented: aggregated Trustpilot DE reviews)</div>
+</td>
+<td>
+  Dashboard aggregates multiple bank accounts. Receipt scanning, categorisation, expense tracking embedded in daily workflow. AI accountant (January 2025) auto-reconciles invoices against transactions on higher tiers.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">The free Solo tier's five free SEPA transactions per month is a documented constraint — most active Freiberufler exceed this immediately and must upgrade. (documented: Finom pricing page)</div>
+</td>
+<td>
+  Purpose-built for income tracking and tax reserve management. Steuer-Topf updated with each transaction. Real-time disposable income display is the defining daily feature.
+  <br><span class="mood b-pos">positive (core users)</span>
+  <div class="pain">Users who want a broader financial command centre find the feature set narrower than Finom or Vivid. No multi-banking aggregation. No team card management. (documented: NeueBanken.de comparison review)</div>
+</td>
+<td>
+  Real-time VAT balance visible on the dashboard. SEPA Instant at no extra charge. Business Credit Card available on Pro and Business tiers subject to credit approval — rare in the neobank segment.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">Absence of a standard overdraft means users cannot spend beyond their balance. The credit card option mitigates this only for approved users. (documented: Holvi product page; aggregated user reviews)</div>
+</td>
+<td>
+  Multi-IBAN sub-accounts (up to 12 on Starter), automatic tax reserve, real-time DATEV/sevDesk sync. Investment layer (stocks, ETFs, crypto) accessible from within the business account — unique in this comparison.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">Consumer-product history means some users initially treat the account as a personal finance tool rather than a primary business account — a framing Vivid's onboarding must actively correct. (documented: aggregated comparison platform reviews)</div>
+</td>
+</tr>
+
+<!-- STAGE 5 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 5</div>
+  <div class="stage-name">Tax &amp; accounting workflow</div>
+  <div class="stage-sub">DATEV, ELSTER, VAT returns, Steuerberater handoff</div>
+</td>
+<td>
+  No native DATEV export, no Umsatzsteuer pre-calculation, no ELSTER integration. CSV export only. Full tax workflow managed externally.
+  <br><span class="mood b-neg">friction</span>
+  <div class="pain crit">⚠ Critical Moment — Steuerberater incompatibility: When a Freiberufler first engages a Steuerberater and is asked for DATEV-compatible data, Revolut cannot provide it directly. German comparison platforms consistently identify this as the decisive limitation for domestically focused Freiberufler. (documented: Finanzfluss; Geschäftskonten24; NeueBanken.de)</div>
+</td>
+<td>
+  No automated tax tools. CSV and PDF exports only. DATEV integration is officially listed as supported but technically unreliable — confirmed by documented user reports.
+  <br><span class="mood b-neg">friction</span>
+  <div class="pain crit">⚠ Critical Moment — DATEV inconsistency discovered post-onboarding: Users who selected N26 partly on stated DATEV support discover post-onboarding that the integration does not function reliably for their account. No resolution path is documented. One Trustpilot review: "despite a prior confirmation, it is not possible to link with DATEV; for some customers it works and for others it doesn't." (documented: Trustpilot DE, N26 reviews)</div>
+</td>
+<td>
+  DATEV-format exports (MT940 DATEV and CSV) and native Lexoffice/sevDesk integrations. AI accountant reduces manual categorisation. No ELSTER integration for VAT filing.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Critical Moment — Lexware incompatibility: Lexware Office does not offer a direct bank connection with Finom, requiring a manual data export step for the 400,000+ Lexware-dependent users in Germany. (documented: Germanpedia accounting software comparison 2026)</div>
+</td>
+<td>
+  Plus tier (€25/month net): DATEV export, automated Umsatzsteuer-Voranmeldung via ELSTER, BWA reports, native Lexoffice/sevDesk integration with automatic booking proposals. Human Tax Service available from €79/month.
+  <br><span class="mood b-pos">positive (Plus tier)</span>
+  <div class="pain">On the free and Start tiers, tax workflow support is minimal. The full value is locked behind the Plus tier. Documented structural gap: Lastschrift issuance is not supported — Freiberufler with recurring-billing clients must maintain a secondary account. (documented: Geschäftskonten24; Kontist support documentation)</div>
+</td>
+<td>
+  DATEV export and Lexware integration on Pro tier (€15/month) and above. E-invoicing in ZUGFeRD and XRechnung via Peppol network — implemented ahead of Germany's 2025 mandatory e-invoicing requirement.
+  <br><span class="mood b-pos">positive (Pro tier)</span>
+  <div class="pain crit">⚠ Critical Moment — E-invoicing compliance: For Freiberufler invoicing B2B clients under the 2025 mandate requiring ZUGFeRD or XRechnung format, Holvi's native Peppol implementation removes a compliance burden most competitors have not yet resolved. (documented: Holvi product page; OMR Reviews)</div>
+</td>
+<td>
+  Umsatzsteuer-Voranmeldung filing directly to Finanzamt from the dashboard. EÜR tracking. Automated categorisation. Native DATEV, sevDesk, and Lexware integrations. All available on the free Starter tier.
+  <br><span class="mood b-pos">positive</span>
+  <div class="pain">The free-tier tax workflow depth is the most complete in this comparison. The main limitation is that a certified Steuerberater review requires a paid add-on. No ELSTER-linked automated filing is documented as available for all legal forms. (documented: Vivid product page)</div>
+</td>
+</tr>
+
+<!-- STAGE 6 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 6</div>
+  <div class="stage-name">Support encounter</div>
+  <div class="stage-sub">Channel availability, quality, language, response times</div>
+</td>
+<td>
+  In-app chat only for Basic and Grow tiers. No dedicated phone line on standard plans. German-language support available. Response times vary from minutes to days.
+  <br><span class="mood b-neg">friction</span>
+  <div class="pain crit">⚠ Critical Moment — Account freeze with no escalation path: Account freezes triggered by automated compliance checks are documented across multiple Trustpilot reviews and Reddit threads. The critical failure is not the compliance check itself but the absence of a human escalation path on standard tiers, with users reporting weeks of inaccessible funds. (documented: aggregated Trustpilot DE reviews)</div>
+</td>
+<td>
+  In-app chat for free tier; phone support limited to Smart tier and above. German-language support available.
+  <br><span class="mood b-neg">friction</span>
+  <div class="pain crit">⚠ Critical Moment — Account freeze with no escalation path: The most documented negative pattern in N26's German Trustpilot reviews. Weeks of inaccessible funds, no case continuity between chat agents. Several users reported intending to file BaFin complaints. (documented: aggregated Trustpilot DE reviews)</div>
+</td>
+<td>
+  Chat-based support during business hours in German and English. No significant cluster of account freeze complaints visible in public reviews during the research period.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">No significant documented failure pattern distinct to Finom directly. Risk exposure remains via Solaris SE — though Finom ended its Solaris partnership in 2025, the transition period may carry residual risk. (documented: TechCrunch, June 2025)</div>
+</td>
+<td>
+  In-app chat, email, and telephone (Monday–Friday 9–17 Uhr). Support agents described as knowledgeable in user reviews.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Critical Moment — Solaris SE infrastructure failure: In December 2025, a Solaris SE internal error prevented Kontist customers from making any transfers for several days over Christmas. At least one user reported being unable to pay rent as a direct consequence. (documented: Financer.de reviews, December 2025)</div>
+</td>
+<td>
+  German and English support via in-app chat and email. Generally positive reviews for responsiveness relative to Revolut and N26.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">A consistent pattern in Trustpilot reviews concerns card dispute handling specifically — users report that Holvi does not support them adequately when card payments are disputed, a process materially weaker than for fully licensed banks. (documented: aggregated Trustpilot reviews, including September 2025 review)</div>
+</td>
+<td>
+  In-app chat. Response times reported as generally adequate in user reviews. Post-pivot, some support agents more calibrated for personal account issues than business-specific queries.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">The Solaris SE dependency means that infrastructure-level failures at Solaris would affect Vivid customers directly, regardless of Vivid's own support quality. (documented: Solaris SE BaFin fines 2024–2025; NeueBanken.de)</div>
+</td>
+</tr>
+
+<!-- STAGE 7 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 7</div>
+  <div class="stage-name">Growth trigger</div>
+  <div class="stage-sub">Plan upgrades, team expansion, new feature adoption</div>
+</td>
+<td>
+  Upgrade from Basic to Grow (€25/month) triggered by hitting the €10,000/month free FX allowance or needing bulk payments. Solo Freiberufler very rarely progress past Basic.
+  <br><span class="mood b-mix">limited upgrade path</span>
+  <div class="pain">The product's growth path is designed for scaling businesses with international payment volume — not for a solo Freiberufler whose main driver is tax compliance. Upgrade triggers are largely irrelevant to the core Freiberufler use case. (documented: Revolut pricing page)</div>
+</td>
+<td>
+  Upgrade from Standard to Smart (€4.90/month) triggered by the need for Spaces sub-accounts for tax reserve management. Go tier's Allianz insurance is the documented trigger for users with travel or equipment needs.
+  <br><span class="mood b-mix">modest upgrade path</span>
+  <div class="pain">Few Freiberufler upgrade past Smart. The Metal tier's premium perks (cashback, travel insurance) serve a solopreneur profile that does not match most of the target segment. (documented: N26 pricing page and user reviews)</div>
+</td>
+<td>
+  Upgrade triggered by adding team members (additional cards and sub-IBANs) or reaching the free Solo tier's transaction limit (5 free SEPA transfers/month). AI accountant is a documented upgrade trigger at tax filing season.
+  <br><span class="mood b-pos">clear upgrade path</span>
+  <div class="pain">The free Solo tier's five-transaction limit means most active Freiberufler must upgrade within weeks of account opening — a fast and predictable conversion trigger. (documented: Finom pricing page)</div>
+</td>
+<td>
+  Free → Start when monthly transactions exceed five. Start → Plus when engaging a DATEV-dependent Steuerberater or requiring automated ELSTER VAT filing.
+  <br><span class="mood b-pos">clear upgrade path</span>
+  <div class="pain">The upgrade triggers are directly tied to real Freiberufler compliance events (Steuerberater engagement, first VAT return) — making the path from free to paid highly predictable. (documented: Kontist pricing page)</div>
+</td>
+<td>
+  Upgrade from Flex to Lite or Pro triggered by invoice volume growth, the need for DATEV functionality for a Steuerberater, or applying for the business credit card.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain">Credit card approval rejection rate is an undocumented but inferred friction point — users who upgrade specifically to access the credit card and are rejected may perceive the upgrade as delivering reduced value. (documented: Holvi pricing page)</div>
+</td>
+<td>
+  Adding team members beyond the Starter single-user limit, or needing the Smart tier's higher transaction limits and employee card management.
+  <br><span class="mood b-pos">clear upgrade path</span>
+  <div class="pain">The free tier's tax filing completeness means there is no compliance-driven upgrade pressure for solo Freiberufler — the upgrade trigger is purely business growth. This is both a strength (low friction) and a monetisation challenge. (documented: Vivid pricing page)</div>
+</td>
+</tr>
+
+<!-- STAGE 8 -->
+<tr>
+<td class="stage-cell">
+  <div class="stage-num">Stage 8</div>
+  <div class="stage-name">Churn / Stay decision</div>
+  <div class="stage-sub">Top retention drivers; documented churn triggers</div>
+</td>
+<td>
+  <strong>Stays:</strong> Internationally active users for whom FX cost savings are measurable retain the account — often as a secondary account for international receipts alongside a German-first primary account.
+  <br><span class="mood b-mix">secondary account pattern</span>
+  <div class="pain crit">⚠ Churn trigger — Steuerberater incompatibility: Domestically focused Freiberufler who discover at their first Steuerberater appointment that the tax workflow gap requires significant manual overhead to bridge. (documented: German comparison platform reviews) No publicly available data identifies where these users go subsequently.</div>
+</td>
+<td>
+  <strong>Stays:</strong> Users who value the BaFin licence as a trust signal, the free tier's cashback, and the simplicity of the interface.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Churn triggers — three documented drivers: (1) Account freeze experience (documented: Trustpilot DE reviews); (2) DATEV integration inconsistency (documented: Trustpilot DE); (3) No-company-name constraint once users require a professionally presented business account (documented: Geschäftskonten24; NeueBanken.de). No publicly available data identifies where these users go subsequently.</div>
+</td>
+<td>
+  <strong>Stays:</strong> The integrated invoicing, banking, and accounting environment creates meaningful switching costs for users who have built their financial workflow within the platform.
+  <br><span class="mood b-pos">positive retention</span>
+  <div class="pain crit">⚠ Churn trigger — SWIFT absence: The absence of SWIFT transfer capability is a hard product boundary for internationally active Freiberufler. (documented: Finom product page — SWIFT not supported) No publicly available data identifies where these users go subsequently.</div>
+</td>
+<td>
+  <strong>Stays:</strong> The Steuer-Topf feature creates documented retention — the real-time tax reserve automation is not replicated by any other banking product in the market.
+  <br><span class="mood b-pos">strong retention (core users)</span>
+  <div class="pain crit">⚠ Churn triggers — three documented drivers: (1) Solaris SE infrastructure reliability (documented: Financer.de, December 2025 outage); (2) Absence of Lastschrift issuance capability (documented: Geschäftskonten24); (3) No payroll support when hiring a first employee (documented: Kontist product scope). No publicly available data identifies where these users go subsequently.</div>
+</td>
+<td>
+  <strong>Stays:</strong> Users who value the complete invoicing-banking integration, the bilingual interface, and Peppol e-invoicing retain the account.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Churn triggers — two documented drivers: (1) FIN-FSA rather than BaFin licence cited as a trust concern by German-regulation-focused users (documented: NeueBanken.de); (2) Inadequate card dispute resolution (documented: Trustpilot reviews). No publicly available data identifies where these users go subsequently.</div>
+</td>
+<td>
+  <strong>Stays:</strong> Deep users of the integrated bookkeeping and VAT filing tools accumulate financial data within the platform, creating meaningful switching costs.
+  <br><span class="mood b-mix">mixed</span>
+  <div class="pain crit">⚠ Churn triggers — two documented drivers: (1) Solaris SE dependency — any significant Solaris disruption would affect Vivid customers directly (documented: Solaris SE BaFin fines 2024–2025; NeueBanken.de); (2) Consumer-product history creates trust perception gap for users seeking a primary business banking relationship (documented: aggregated comparison platform reviews). No publicly available data identifies where these users go subsequently.</div>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div class="footnote">
+  Sources: Trustpilot DE (aggregated review patterns, 2024–2026) · NeueBanken.de (Kontist Erfahrungen 2026; comparison platform data) · Geschäftskonten24 (January 2026) · Finanzfluss (comparison platform reviews) · Fintech Compass (Finom review) · Germanpedia (accounting software comparison 2026) · OMR Reviews (Holvi) · Financer.de (Kontist reviews, December 2025) · Mordor Intelligence (Germany Neobanking Market 2025) · TechCrunch (Finom Series C, June 2025) · Holvi product page · Vivid product page · Kontist product page · N26 support documentation · Revolut pricing page · Finom pricing page.
+  <br>Segment: Freiberufler, Einzelunternehmer, and microbusinesses with 1–3 employees in Germany. &nbsp;|&nbsp; Task 1.2 — Qonto Market Product Owner Case Study (Germany). &nbsp;|&nbsp; For player profiles, operational models, and value propositions, see the companion Word document.
+</div>
+
+</body>
+</html>
