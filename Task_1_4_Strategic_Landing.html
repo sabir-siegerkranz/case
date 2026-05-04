@@ -79,6 +79,8 @@ new IntersectionObserver(([e])=>{nav.classList.toggle('show',!e.isIntersecting)}
 const secs=document.querySelectorAll('.fw[id]'),links=document.querySelectorAll('.topnav a');
 new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.remove('active'));const l=document.querySelector(`.topnav a[href="#${en.target.id}"]`);if(l)l.classList.add('active')}})},{threshold:.3}).observe;
 secs.forEach(s=>new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.remove('active'));const l=document.querySelector(`.topnav a[href="#${en.target.id}"]`);if(l)l.classList.add('active')}})},{threshold:.2}).observe(s));
+<iframe width="640px" height="480px" src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=vQnxYjJOHE-ZtOVjnkm3a-5oqZm4dlJGmP4bVNqLJ4dUN1RSSjRBNlg2QU5BTUdZWDQxRDNRVUxQUy4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+
 </script>
 </body>
 </html>
