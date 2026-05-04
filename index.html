@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Entry Research — Identifying Strategic Opportunity</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--n:#0B1426;--n2:#121E36;--n3:#1A2B4A;--sl:#5E7186;--sd:#F7F3EC;--cr:#FDFBF7;--a:#D4693A;--a2:#E8854F;--ag:rgba(212,105,58,.1);--t:#1A8F6E;--bl:#2968A8;--r:#C94444;--g:#B8922F;--fd:'Playfair Display',Georgia,serif;--fb:'DM Sans',system-ui,sans-serif;--fm:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}body{font-family:var(--fb);color:var(--n);background:var(--cr);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.23,1,.32,1),transform .65s cubic-bezier(.23,1,.32,1)}.rv.v{opacity:1;transform:none}.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(11,20,38,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);transform:translateY(-100%);transition:transform .4s}nav.on{transform:none}.ni{max-width:1100px;margin:0 auto;display:flex;align-items:center;padding:0 32px;height:56px}.ni .lg{font-family:var(--fd);color:var(--a);font-size:13px;margin-right:auto;white-space:nowrap}.ni a{color:rgba(255,255,255,.45);font-size:11px;font-weight:500;text-decoration:none;padding:18px 12px;letter-spacing:.3px;transition:color .2s;white-space:nowrap}.ni a:hover,.ni a.ac{color:#fff}.ni a.ac{box-shadow:inset 0 -2px 0 var(--a)}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--n);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,rgba(212,105,58,.07) 0%,transparent 55%);top:-350px;right:-250px}
+.hc{position:relative;z-index:1;max-width:820px}
+.ht{font-family:var(--fm);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--a);margin-bottom:32px;opacity:0;animation:fi .7s .2s forwards}
+.hero h1{font-family:var(--fd);font-size:clamp(34px,5.5vw,60px);font-weight:400;line-height:1.12;margin-bottom:24px;opacity:0;animation:fi .7s .4s forwards}
+.hero h1 em{font-style:italic;color:var(--a2)}
+.hs{font-size:17px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.8;max-width:580px;margin:0 auto 48px;opacity:0;animation:fi .7s .6s forwards}
+.hst{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fi .7s .8s forwards}
+.hst .hv{font-family:var(--fd);font-size:38px;color:#fff;margin-bottom:4px}.hst .hl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.5px}
+.dl-btn{display:inline-block;margin-top:40px;padding:14px 32px;background:var(--a);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;transition:all .3s;opacity:0;animation:fi .7s 1s forwards}.dl-btn:hover{background:var(--a2);transform:translateY(-2px)}
+.sh{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);opacity:0;animation:fi .7s 1.2s forwards}.sh span{display:block;width:1px;height:36px;background:linear-gradient(to bottom,var(--a),transparent);margin:0 auto 6px}.sh em{font-size:9px;color:rgba(255,255,255,.25);font-style:normal;letter-spacing:2.5px;text-transform:uppercase}
+@keyframes fi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* SECTIONS */
+.s{padding:96px 32px;position:relative}.s.dk{background:var(--n);color:#fff}.s.sd{background:var(--sd)}.s.ab{background:linear-gradient(135deg,var(--n) 0%,var(--n3) 100%);color:#fff}.ct{max-width:1000px;margin:0 auto}
+.sl{font-family:var(--fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--a);margin-bottom:10px;display:block}.dk .sl,.ab .sl{color:var(--a2)}
+.st{font-family:var(--fd);font-size:clamp(26px,3.8vw,40px);font-weight:400;line-height:1.2;margin-bottom:18px}.st em{font-style:italic}
+.ss{font-size:15px;color:var(--sl);font-weight:300;line-height:1.75;max-width:620px;margin-bottom:36px}.dk .ss,.ab .ss{color:rgba(255,255,255,.5)}
+h3{font-size:16px;font-weight:600;margin:28px 0 14px}
+p,.tx{font-size:14px;color:#3D4F5F;line-height:1.7;font-weight:300;margin-bottom:14px}p strong{font-weight:600;color:var(--n)}.dk p,.ab p{color:rgba(255,255,255,.6)}.dk p strong,.ab p strong{color:#fff}
+
+/* CARDS */
+.dg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:32px 0}
+.dc{background:#fff;border-radius:12px;padding:18px 14px;border:1px solid rgba(0,0,0,.04);transition:all .3s}.dc:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.05)}
+.dn{font-family:var(--fm);font-size:10px;color:var(--a);letter-spacing:2px;margin-bottom:8px}.dc h4{font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.3}.dc p{font-size:11px;color:var(--sl);line-height:1.5;margin:0}
+
+/* STAT BANNER */
+.sb{display:grid;grid-template-columns:repeat(4,1fr);margin:40px 0;border-radius:14px;overflow:hidden}.sb .b{padding:24px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.05)}.sb .b:last-child{border:none}.dk .sb{background:rgba(255,255,255,.04)}.sd .sb,.s:not(.dk):not(.ab) .sb{background:#fff;border:1px solid rgba(0,0,0,.05)}.sb .sv{font-family:var(--fd);font-size:28px;margin-bottom:3px}.dk .sb .sv,.ab .sb .sv{color:var(--a2)}.sb .sl2{font-size:10px;color:var(--sl);text-transform:uppercase;letter-spacing:1px;line-height:1.4}.dk .sb .sl2,.ab .sb .sl2{color:rgba(255,255,255,.35)}
+
+/* LOGO PILLS */
+.lp{display:inline-flex;align-items:center;gap:6px;background:white;border:1px solid rgba(0,0,0,.06);border-radius:8px;padding:4px 10px 4px 4px;margin:3px;font-size:11px;font-weight:500;color:var(--n);white-space:nowrap;cursor:pointer;transition:all .2s}
+.lp:hover{border-color:var(--a);box-shadow:0 2px 8px rgba(0,0,0,.08);transform:scale(1.03)}
+.lp img{width:22px;height:22px;object-fit:contain;border-radius:4px}
+.dk .lp{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.8)}
+
+/* TIER CARDS */
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.tc{border-radius:14px;padding:28px 22px;position:relative;overflow:hidden}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.tc.ti{background:rgba(41,104,168,.06);border:1px solid rgba(41,104,168,.08)}.tc.ti::before{background:var(--bl)}
+.tc.tn{background:var(--ag);border:1px solid rgba(212,105,58,.08)}.tc.tn::before{background:var(--a)}
+.tc.tf{background:rgba(26,143,110,.06);border:1px solid rgba(26,143,110,.08)}.tc.tf::before{background:var(--t)}
+.tc h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.tc.ti h4{color:var(--bl)}.tc.tn h4{color:var(--a)}.tc.tf h4{color:var(--t)}
+.tc .logos{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.tc .desc{font-size:12px;color:var(--sl);line-height:1.6;font-weight:300;margin:0}
+
+/* MATURITY TABLE */
+.tw{overflow-x:auto;margin:28px 0;border-radius:12px;border:1px solid rgba(0,0,0,.05);background:#fff}
+.mt{width:100%;border-collapse:collapse;font-size:12px}
+.mt th{padding:10px 12px;text-align:center;font-weight:600;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--sl);border-bottom:2px solid rgba(0,0,0,.05);background:rgba(0,0,0,.012)}
+.mt th:first-child{text-align:left;padding-left:16px}
+.mt td{padding:8px 12px;text-align:center;border-bottom:1px solid rgba(0,0,0,.03);font-weight:500}
+.mt td:first-child{text-align:left;padding-left:16px}.mt td:first-child .lp{margin:0}
+.mt tr:last-child td{border:none}.mt .qr td{background:var(--ag)}
+.c0{opacity:.2}.c1{color:var(--r)}.c2{color:#D4693A}.c3{color:var(--g)}.c4{color:var(--t)}.c5{color:var(--t);font-weight:700}
+
+/* FRICTION CARDS */
+.fc{display:grid;grid-template-columns:48px 1fr;gap:18px;background:#fff;border-radius:14px;padding:24px;border:1px solid rgba(0,0,0,.04);margin:16px 0;transition:box-shadow .3s}
+.fc:hover{box-shadow:0 6px 24px rgba(0,0,0,.05)}
+.fn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:20px;color:#fff;background:var(--a);flex-shrink:0}
+.fc blockquote{font-family:var(--fd);font-size:17px;font-style:italic;color:var(--n);margin-bottom:10px;line-height:1.35}
+.fc p{font-size:13px;margin:0}
+
+/* COUNTRY BARS */
+.cbar{margin:8px 0;display:flex;align-items:center;gap:12px}.cbar .lb{font-size:12px;width:90px;text-align:right;font-weight:500;flex-shrink:0}.cbar .br{height:22px;border-radius:4px}.cbar .vl{font-size:11px;font-weight:600;margin-left:6px}
+.dk .cbar .lb{color:rgba(255,255,255,.6)}.dk .cbar .vl{color:rgba(255,255,255,.8)}
+
+/* OPPORTUNITY CARDS */
+.og4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:36px 0}
+.o4{border-radius:14px;padding:28px 24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.o4 .big{font-family:var(--fd);font-size:36px;color:var(--a2);margin-bottom:6px}
+.o4 h4{font-size:13px;color:var(--a2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;font-weight:600}
+.o4 p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;margin:0}
+
+/* EFFORT */
+.eb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px;margin-top:28px}
+.eb h4{font-size:12px;color:var(--a2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;font-weight:600}
+.eb p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin:4px 0}
+
+/* PERSONA CARDS */
+.pc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.pc{border-radius:14px;border:1px solid rgba(0,0,0,.06);background:#fff;overflow:hidden;transition:all .3s;cursor:pointer}
+.pc:hover{box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.pc-top{padding:20px;text-align:center;border-bottom:1px solid rgba(0,0,0,.04)}
+.pc-top svg{width:80px;height:80px;margin-bottom:10px}
+.pc-top h4{font-size:15px;font-weight:600;margin-bottom:4px}.pc-top .sub{font-size:11px;color:var(--sl)}
+.pc-expand{display:none;padding:20px;font-size:12px;color:#3D4F5F;line-height:1.6}
+.pc.open .pc-expand{display:block}
+.pc-expand h5{font-size:11px;color:var(--a);text-transform:uppercase;letter-spacing:1.5px;margin:10px 0 4px;font-weight:600}
+.pc-expand h5:first-child{margin-top:0}
+.pc-click{font-size:10px;color:var(--a);text-transform:uppercase;letter-spacing:1px;padding:10px 20px;text-align:center;font-weight:500}
+.pc.open .pc-click{display:none}
+
+/* PIE CHART */
+.pie-wrap{display:flex;align-items:center;gap:32px;margin:28px 0}
+.pie-legend{font-size:12px;line-height:2}
+.pie-legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+
+/* FACT BOX */
+.fbox{display:inline-block;background:var(--ag);border:1px solid rgba(212,105,58,.15);border-radius:10px;padding:14px 20px;margin:16px 0}
+.fbox .fv{font-family:var(--fd);font-size:22px;color:var(--a);margin-bottom:2px}
+.fbox .fl{font-size:11px;color:var(--sl)}
+
+/* CHAIN */
+.chain{display:flex;align-items:center;gap:0;margin:32px 0;flex-wrap:wrap;justify-content:center}
+.chain-link{background:#fff;border:2px solid rgba(0,0,0,.08);border-radius:10px;padding:12px 16px;text-align:center;transition:all .3s;position:relative;min-width:120px;color:var(--n)}
+.chain-link:hover{border-color:var(--a);box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.chain-link h5{font-size:13px;font-weight:600;margin-bottom:4px;color:var(--n)}.chain-link .cs{font-size:10px;color:var(--sl)}
+.chain-arrow{font-size:18px;color:rgba(0,0,0,.2);padding:0 4px}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(11,20,38,.7);backdrop-filter:blur(8px);z-index:300;justify-content:center;align-items:center}
+.modal-bg.show{display:flex}
+.modal{background:#fff;border-radius:16px;padding:40px;max-width:480px;width:90%;position:relative;animation:modalIn .3s}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border:none;background:rgba(0,0,0,.05);border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.modal-close:hover{background:rgba(0,0,0,.1)}
+.modal img{width:48px;height:48px;object-fit:contain;border-radius:8px;margin-bottom:12px}
+.modal h3{font-size:20px;font-weight:600;margin-bottom:4px}
+.modal .tier-tag{font-size:10px;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:16px;display:inline-block;padding:3px 8px;border-radius:4px}
+.modal .tier-tag.inc{color:var(--bl);background:rgba(41,104,168,.08)}
+.modal .tier-tag.neo{color:var(--a);background:var(--ag)}
+.modal .tier-tag.fin{color:var(--t);background:rgba(26,143,110,.08)}
+.modal h4{font-size:11px;color:var(--sl);text-transform:uppercase;letter-spacing:1.5px;margin:16px 0 6px;font-weight:600}
+.modal p{font-size:14px;color:#3D4F5F;line-height:1.6}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+
+/* FILES */
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+.flink{display:block;background:#fff;border:1px solid rgba(0,0,0,.05);border-radius:10px;padding:18px;text-decoration:none;transition:all .3s}
+.flink:hover{border-color:var(--a);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.flink .ft{font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.flink .ft.dx{color:var(--bl)}.flink .ft.ht{color:var(--a)}
+.flink h5{font-size:13px;color:var(--n);font-weight:600;margin-bottom:3px;line-height:1.3}
+.flink span{font-size:10px;color:var(--sl);font-weight:300}
+
+/* FOOTER */
+.foot{background:var(--n);padding:56px 32px}
+.foot .ct{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.foot h4{font-size:11px;color:var(--a);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;font-weight:600}
+.foot p{font-size:12px;color:rgba(255,255,255,.3);line-height:1.7;margin:0}
+.foot .copy{text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);font-size:11px;color:rgba(255,255,255,.2);grid-column:1/-1}
+
+/* SCATTER */
+.scatter-wrap{background:#fff;border:1px solid rgba(0,0,0,.05);border-radius:12px;padding:24px;margin:24px 0}
+
+@media(max-width:900px){.dg{grid-template-columns:repeat(2,1fr)}.tg,.pc-grid,.og4{grid-template-columns:1fr}.sb{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr}.foot .ct{grid-template-columns:1fr}.hst{gap:28px}.fc{grid-template-columns:1fr}.pie-wrap{flex-direction:column}.chain{gap:8px}}
+@media(max-width:600px){.dg{grid-template-columns:1fr}.sb{grid-template-columns:1fr}.hst{flex-direction:column;gap:16px}}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="ni"><div class="lg">Market Entry Research</div><a href="#s1">Market</a><a href="#s2">Forces</a><a href="#s3">Customer</a><a href="#s4">Banking</a><a href="#s5">Germany</a><a href="#s6">Landscape</a><a href="#s7">Maturity</a><a href="#s8">Frictions</a><a href="#s9">Opportunity</a><a href="#s10">How</a></div></nav>
+
+<!-- SLIDE 1: HERO -->
+<section class="hero" id="s0">
+<div class="hc">
+<div class="ht">German SME Banking · Research by Orkhan H. Garibov</div>
+<h1>Identifying Strategic<br><em>Opportunity</em></h1>
+<p class="hs">18 players across 3 competitive tiers. 220+ sources. One structural gap that unlocks 39% of the addressable market.</p>
+<div class="hst">
+<div><div class="hv">2.63M</div><div class="hl">Microenterprises</div></div>
+<div><div class="hv">€600B</div><div class="hl">Turnover</div></div>
+<div><div class="hv">39%</div><div class="hl">TAM non-addressable</div></div>
+</div>
+<a href="Task_1_4_Strategic_Landscape_Synthesis.docx" class="dl-btn">Download the One-Pager</a>
+</div>
+<div class="sh"><span></span><em>Scroll</em></div>
+</section>
+
+<!-- SLIDE 2: FIVE FORCES -->
+<section class="s sd" id="s1"><div class="ct">
+<div class="rv"><span class="sl">The market</span><h2 class="st">2.63 million businesses.<br><em>One under-monetized wallet.</em></h2><p class="ss">Businesses with 1–3 employees turning over €89K–€266K/year. Direct Geschäftskonto TAM: €400M–€920M. Full-stack: €2.1B–€5.3B/year.</p></div>
+</div></section>
+
+<section class="s" id="s2"><div class="ct">
+<div class="rv"><span class="sl">Five forces</span><h2 class="st">The largest switching window<br>in <em>a decade</em></h2></div>
+<div class="dg">
+<div class="dc rv d1"><div class="dn">01</div><h4>E-invoicing mandate</h4><p>Jan 2025: B2B must use ZUGFeRD/XRechnung. Triggering active platform re-evaluation.</p></div>
+<div class="dc rv d2"><div class="dn">02</div><h4>AI accounting</h4><p>Finom, Vivid, Norman making Steuerberater-free filing viable. €1.8–2.5K/yr spend at risk.</p></div>
+<div class="dc rv d3"><div class="dn">03</div><h4>Generational rotation</h4><p>57% of owners 55+, 114K closures/yr. New founders avg. 34.4, 36% digital businesses.</p></div>
+<div class="dc rv d4"><div class="dn">04</div><h4>Incumbent contraction</h4><p>Sparkassen + Volksbanken below 1,000. Branches closing. Fees rising.</p></div>
+<div class="dc rv d4"><div class="dn">05</div><h4>ECB rate squeeze</h4><p>Down to 2.0%. Neobank deposit-float economics compressing.</p></div>
+</div>
+<p class="rv tx" style="margin-top:24px;font-style:italic;color:var(--sl)">Demand is shifting as compliance mandates and generational turnover force active re-evaluation. Supply is restructuring as incumbents contract and neobank economics compress. Both sides of the market are in motion simultaneously.</p>
+</div></section>
+
+<!-- SLIDE 3: CUSTOMER PERSONAS -->
+<section class="s sd" id="s3"><div class="ct">
+<div class="rv"><span class="sl">The customer</span><h2 class="st">Who is the German<br><em>sole proprietor?</em></h2></div>
+
+<div class="rv" style="display:flex;align-items:start;gap:32px;flex-wrap:wrap">
+<!-- PIE CHART -->
+<div class="pie-wrap" style="flex:1;min-width:300px">
+<svg viewBox="0 0 200 200" width="200" height="200" style="flex-shrink:0">
+<!-- Pie segments - approximated with stroke-dasharray -->
+<circle cx="100" cy="100" r="80" fill="none" stroke="#2968A8" stroke-width="40" stroke-dasharray="80.4 422.7" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#3A82CC" stroke-width="40" stroke-dasharray="80.4 422.7" stroke-dashoffset="-80.4" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#D4693A" stroke-width="40" stroke-dasharray="60.3 442.8" stroke-dashoffset="-160.8" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#E8854F" stroke-width="40" stroke-dasharray="35.2 468" stroke-dashoffset="-221.1" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#1A8F6E" stroke-width="40" stroke-dasharray="30.2 473" stroke-dashoffset="-256.3" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#22B88D" stroke-width="40" stroke-dasharray="25.1 478" stroke-dashoffset="-286.5" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="80" fill="none" stroke="#94A3B8" stroke-width="40" stroke-dasharray="190.9 312.2" stroke-dashoffset="-311.6" transform="rotate(-90 100 100)"/>
+<circle cx="100" cy="100" r="60" fill="var(--sd)"/>
+<text x="100" y="96" text-anchor="middle" font-family="var(--fd)" font-size="20" fill="var(--n)">2.63M</text>
+<text x="100" y="112" text-anchor="middle" font-size="8" fill="var(--sl)">MICROENTERPRISES</text>
+</svg>
+<div class="pie-legend" style="margin-left:16px">
+<div><span class="dot" style="background:#2968A8"></span>Professional/technical 16%</div>
+<div><span class="dot" style="background:#3A82CC"></span>Retail/wholesale 16%</div>
+<div><span class="dot" style="background:#D4693A"></span>Construction 12%</div>
+<div><span class="dot" style="background:#E8854F"></span>Health & social 7%</div>
+<div><span class="dot" style="background:#1A8F6E"></span>Real estate 6%</div>
+<div><span class="dot" style="background:#22B88D"></span>Manufacturing 5%</div>
+<div><span class="dot" style="background:#94A3B8"></span>Other 38%</div>
+</div>
+</div>
+
+<div class="fbox rv" style="align-self:start">
+<div class="fv">€88,661 – €177,322</div>
+<div class="fl">Average yearly turnover (1–3 employees) · Destatis</div>
+</div>
+</div>
+
+<!-- PERSONA CARDS -->
+<div class="pc-grid rv">
+<!-- Persona 1 -->
+<div class="pc" onclick="this.classList.toggle('open')">
+<div class="pc-top">
+<svg viewBox="0 0 80 80"><circle cx="40" cy="25" r="12" fill="#3A82CC"/><rect x="20" y="45" width="40" height="25" rx="6" fill="#3A82CC" opacity=".7"/><rect x="28" y="50" width="24" height="14" rx="2" fill="#fff" opacity=".5"/><circle cx="55" cy="30" r="4" fill="#D4693A"/><rect x="12" y="55" width="8" height="2" rx="1" fill="#94A3B8"/><rect x="60" y="55" width="8" height="2" rx="1" fill="#94A3B8"/></svg>
+<h4>The Digital Freelancer</h4>
+<div class="sub">Age 34–47 · IT/consulting · Urban</div>
+</div>
+<div class="pc-click">↓ Click to explore</div>
+<div class="pc-expand">
+<h5>Who they are</h5>
+<p>84% male. €104/hr avg., €8K/month net. Berlin, Hamburg, Munich. 34.5% non-native German speakers. Banks with Finom, Kontist, Holvi, FYRST. 77% use AI tools daily.</p>
+<h5>What they think & feel</h5>
+<p>Independence-driven (56%). 44% worry about retirement. 63% expect difficult market. 86% would choose self-employment again.</p>
+<h5>Pain points</h5>
+<p>52% name tax returns as worst burden. Quarterly VAT consumes a full day. 30–90 day payment terms create liquidity gaps — no neobank credit option. ~35% face language friction in German-only interfaces.</p>
+<h5>What they need</h5>
+<p>Revenue-based short-term credit. Automated VAT categorization. English-language option.</p>
+</div>
+</div>
+<!-- Persona 2 -->
+<div class="pc" onclick="this.classList.toggle('open')">
+<div class="pc-top">
+<svg viewBox="0 0 80 80"><circle cx="40" cy="22" r="12" fill="#D4693A"/><path d="M25 42 L40 38 L55 42 L55 70 L25 70Z" fill="#D4693A" opacity=".7"/><rect x="34" y="46" width="12" height="8" rx="1" fill="#fff" opacity=".4"/><line x1="30" y1="62" x2="38" y2="52" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="62" x2="42" y2="52" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/><rect x="14" y="60" width="10" height="4" rx="1" fill="#B8922F"/></svg>
+<h4>The Established Tradesperson</h4>
+<div class="sub">Age 55+ · Construction/services</div>
+</div>
+<div class="pc-click">↓ Click to explore</div>
+<div class="pc-expand">
+<h5>Who they are</h5>
+<p>Predominantly male (female participation at record low 14.3%). €89K–€177K turnover. Banks with Sparkasse/Volksbank for cash deposits and branch access. 68% use digital tools — but not for banking.</p>
+<h5>What they think & feel</h5>
+<p>65% report bureaucratic hurdles. Customers expect digital payments (76% frustrated when unavailable) but cash remains central to revenue.</p>
+<h5>Pain points</h5>
+<p>Cash deposit logistics: receiving, traveling to branch, depositing, reconciling. Branch network contracting below 1,000. Dispo at 11.6% avg. APR used as working capital. Cannot leave incumbent without losing cash + credit.</p>
+<h5>What they need</h5>
+<p>Cash deposit access from a digital provider. Affordable short-term credit. Simple tools alongside — not replacing — their tax advisor.</p>
+</div>
+</div>
+<!-- Persona 3 -->
+<div class="pc" onclick="this.classList.toggle('open')">
+<div class="pc-top">
+<svg viewBox="0 0 80 80"><circle cx="40" cy="22" r="12" fill="#1A8F6E"/><rect x="22" y="40" width="36" height="30" rx="6" fill="#1A8F6E" opacity=".7"/><rect x="30" y="44" width="20" height="12" rx="2" fill="#fff" opacity=".4"/><circle cx="35" cy="49" r="2" fill="#D4693A"/><circle cx="45" cy="49" r="2" fill="#3A82CC"/><text x="40" y="67" text-anchor="middle" font-size="6" fill="#fff" opacity=".6">EN DE TR</text></svg>
+<h4>The Migration-Background Founder</h4>
+<div class="sub">~773K+ · Gastronomy/retail/services</div>
+</div>
+<div class="pc-click">↓ Click to explore</div>
+<div class="pc-expand">
+<h5>Who they are</h5>
+<p>Founding rate 2x native-born. Turkish, Ukrainian, Syrian, Romanian, Polish. Over-represented in cash-intensive sectors.</p>
+<h5>What they think & feel</h5>
+<p>Building financial credibility from zero. No credit score history = "treated nearly as negatively as a poor one." 36% of solo self-employed consider emigrating.</p>
+<h5>Pain points</h5>
+<p>Triple exclusion: excluded from digital banking by cash needs, from credit by absent score history, from support by language (only 2 of 18 providers offer non-German interfaces).</p>
+<h5>What they need</h5>
+<p>Multilingual onboarding. Transaction-based credit assessment. Cash deposit access.</p>
+</div>
+</div>
+</div>
+<p class="rv" style="text-align:center;font-weight:600;margin-top:16px">All three personas converge on the same two structural barriers: cash deposit access and short-term credit.</p>
+</div></section>
+
+<!-- SLIDE 4: HOW THEY BANK -->
+<section class="s dk" id="s4"><div class="ct">
+<div class="rv"><span class="sl">Banking behavior</span><h2 class="st" style="color:#fff">Passive loyalty. <em>Paper workflows.</em></h2></div>
+<div class="sb rv">
+<div class="b"><div class="sv">93%</div><div class="sl2">Have a Hausbank<br>avg. 20yr tenure</div></div>
+<div class="b"><div class="sv">−17</div><div class="sl2">NPS Sparkassen<br>vs +29–48 neobanks</div></div>
+<div class="b"><div class="sv">11 hrs</div><div class="sl2">Monthly admin<br>solo self-employed</div></div>
+<div class="b"><div class="sv">only 56%</div><div class="sl2">Bank with a<br>single institution</div></div>
+</div>
+
+<h3 class="rv" style="color:var(--a2);font-size:13px;text-transform:uppercase;letter-spacing:1.5px">The loyalty chain — what holds them in place</h3>
+<div class="chain rv">
+<div class="chain-link"><h5>Steuerberater</h5><div class="cs">89,995 in Germany<br>75%+ use paper Pendelordner<br><em style="font-size:9px;color:var(--sl)">BStBK STAX 2018</em></div></div>
+<div class="chain-arrow">→</div>
+<div class="chain-link"><h5>DATEV</h5><div class="cs">1.5M+ businesses<br>Native integration: 2 of 14 providers</div></div>
+<div class="chain-arrow">→</div>
+<div class="chain-link"><h5>Hausbank</h5><div class="cs">93% have one<br>20-year avg. relationship</div></div>
+<div class="chain-arrow">→</div>
+<div class="chain-link"><h5>Dispo</h5><div class="cs">11.6% avg. APR<br>Only 2 neobanks offer any credit</div></div>
+<div class="chain-arrow">→</div>
+<div class="chain-link"><h5>Cash deposits</h5><div class="cs">53% POS still cash<br>Only 1 neobank (N26, 1.5% fee)</div></div>
+</div>
+<p class="rv" style="text-align:center;font-style:italic;color:rgba(255,255,255,.4);margin-top:16px;font-size:13px">The chain holds not because each link is strong — but because breaking any one link without an alternative forces the customer back to the incumbent.</p>
+</div></section>
+
+<!-- SLIDE 5: GERMANY DIFFERENT -->
+<section class="s" id="s5"><div class="ct">
+<div class="rv"><span class="sl">Germany vs. Europe</span><h2 class="st">Three measurable <em>peculiarities</em></h2></div>
+<div class="rv" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin:32px 0">
+<div style="padding:20px;background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.04)">
+<h4 style="font-size:12px;color:var(--a);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Cash at POS</h4>
+<div class="cbar"><div class="lb">Germany</div><div class="br" style="width:53%;background:var(--a)"></div><div class="vl">53%</div></div>
+<div class="cbar"><div class="lb">France</div><div class="br" style="width:43%;background:var(--bl)"></div><div class="vl">43%</div></div>
+<div class="cbar"><div class="lb">Netherlands</div><div class="br" style="width:22%;background:var(--t)"></div><div class="vl">22%</div></div>
+<div class="cbar"><div class="lb">UK</div><div class="br" style="width:12%;background:var(--sl)"></div><div class="vl">12%</div></div>
+<div style="font-size:9px;color:var(--sl);margin-top:8px">ECB SPACE 2024, UK Finance 2024</div>
+</div>
+<div style="padding:20px;background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.04)">
+<h4 style="font-size:12px;color:var(--a);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Card penetration</h4>
+<div style="font-family:var(--fd);font-size:28px;color:var(--n)">6.58M</div>
+<div style="font-size:12px;color:var(--sl);margin-bottom:8px">credit cards</div>
+<div style="font-size:12px;color:var(--sl)">vs. <strong style="color:var(--n);font-size:16px">143M</strong> debit cards</div>
+<div style="margin-top:12px;font-size:12px;color:var(--sl)">Dispo at ~11.3% APR serves as de facto credit</div>
+<div style="font-size:9px;color:var(--sl);margin-top:8px">Statista/ECB 2024</div>
+</div>
+<div style="padding:20px;background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.04)">
+<h4 style="font-size:12px;color:var(--a);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Open banking</h4>
+<div style="display:flex;gap:16px;align-items:baseline">
+<div><div style="font-family:var(--fd);font-size:28px;color:var(--n)">~2%</div><div style="font-size:10px;color:var(--sl)">Germany</div></div>
+<div style="font-size:14px;color:var(--sl)">vs.</div>
+<div><div style="font-family:var(--fd);font-size:28px;color:var(--t)">9.2%</div><div style="font-size:10px;color:var(--sl)">UK</div></div>
+</div>
+<div style="margin-top:12px;font-size:12px;color:var(--sl)"><strong style="color:var(--n)">70%</strong> of German firms cancelled innovation projects over privacy concerns</div>
+<div style="font-size:9px;color:var(--sl);margin-top:8px">PwC/OBL 2024, Bitkom 2025</div>
+</div>
+</div>
+<p class="rv" style="font-style:italic;color:var(--sl);text-align:center;margin-top:8px;font-size:13px">A foreign fintech entering Germany must understand that sharing financial data — even with your own accounting tool — feels transgressive in a way it does not in London or Amsterdam.</p>
+</div></section>
+
+<!-- SLIDE 6: THREE TIERS -->
+<section class="s sd" id="s6"><div class="ct">
+<div class="rv"><span class="sl">The landscape</span><h2 class="st">Three tiers. <em>No full-stack player.</em></h2><p class="ss">An ecosystem of specialization — connected via PSD2, BaaS, and APIs rather than built across all dimensions.</p></div>
+<div class="tg">
+<div class="tc ti rv d1"><h4>Incumbents</h4><div class="logos">
+<span class="lp" onclick="showModal('sparkasse')"><img src="logos/sparkasse.png">Sparkasse</span>
+<span class="lp" onclick="showModal('volksbank')"><img src="logos/volksbank.png">Volksbank</span>
+<span class="lp" onclick="showModal('commerzbank')"><img src="logos/commerzbank.png">Commerzbank</span>
+<span class="lp" onclick="showModal('ing')"><img src="logos/ing.png">ING</span>
+<span class="lp" onclick="showModal('fyrst')"><img src="logos/fyrst.png">FYRST</span>
+</div><p class="desc">Full-service Hausbank: branch access, cash handling, instant credit, EdB deposit insurance. Cannot build accounting or invoicing.</p></div>
+<div class="tc tn rv d2"><h4>Neobanks</h4><div class="logos">
+<span class="lp" onclick="showModal('n26')"><img src="logos/n26.png">N26</span>
+<span class="lp" onclick="showModal('finom')"><img src="logos/finom.png">Finom</span>
+<span class="lp" onclick="showModal('kontist')"><img src="logos/kontist.png">Kontist</span>
+<span class="lp" onclick="showModal('holvi')"><img src="logos/holvi.png">Holvi</span>
+<span class="lp" onclick="showModal('vivid')"><img src="logos/vivid.jpeg">Vivid</span>
+<span class="lp" onclick="showModal('revolut')"><img src="logos/revolut.png">Revolut</span>
+<span class="lp" onclick="showModal('qonto')"><img src="logos/qonto.png">Qonto</span>
+</div><p class="desc">Digital-first at low cost. Racing to add workflow integration. Lack credit, cash infrastructure, reliable DATEV.</p></div>
+<div class="tc tf rv d3"><h4>Specialized fintechs</h4><div class="logos">
+<span class="lp" onclick="showModal('lexware')"><img src="logos/lexware.png">Lexware</span>
+<span class="lp" onclick="showModal('accountable')"><img src="logos/accountable.png">Accountable</span>
+<span class="lp" onclick="showModal('sumup')"><img src="logos/sumup.png">SumUp</span>
+</div><p class="desc">Workflow-first: accounting, tax filing, POS acquiring. Added Geschäftskonto as embedded feature. Cannot offer credit or cash.</p></div>
+</div>
+<p class="rv" style="text-align:center;font-style:italic;color:var(--sl);font-size:13px">The competitive question is not which tier to displace — but which combination of owned capabilities and partner integrations assembles the most complete customer experience.</p>
+</div></section>
+
+<!-- SLIDE 7: MATURITY -->
+<section class="s" id="s7"><div class="ct">
+<div class="rv"><span class="sl">Feature maturity</span><h2 class="st">Cash and lending remain<br><em>incumbent monopolies.</em></h2><p class="ss">No player scores 3+ across all six categories. Neobanks reached transacting parity but score 0–2 on cash and lending.</p></div>
+<div class="tw rv"><table class="mt"><thead><tr><th>Player</th><th>Transact.</th><th>Cash</th><th>Lending</th><th>Acctg&Tax</th><th>Fin.Mgmt</th><th>Pmt Acq.</th></tr></thead><tbody>
+<tr><td><span class="lp" onclick="showModal('sparkasse')"><img src="logos/sparkasse.png">Sparkasse</span></td><td class="c3">3</td><td class="c5">5</td><td class="c5">5</td><td class="c1">1</td><td class="c0">0</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('commerzbank')"><img src="logos/commerzbank.png">Commerzbank</span></td><td class="c3">3</td><td class="c4">4</td><td class="c5">5</td><td class="c1">1</td><td class="c0">0</td><td class="c1">1</td></tr>
+<tr><td><span class="lp" onclick="showModal('ing')"><img src="logos/ing.png">ING</span></td><td class="c3">3</td><td class="c1">1</td><td class="c4">4</td><td class="c2">2</td><td class="c1">1</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('fyrst')"><img src="logos/fyrst.png">FYRST</span></td><td class="c3">3</td><td class="c3">3</td><td class="c2">2</td><td class="c1">1</td><td class="c0">0</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('n26')"><img src="logos/n26.png">N26</span></td><td class="c3">3</td><td class="c2">2</td><td class="c2">2</td><td class="c1">1</td><td class="c0">0</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('finom')"><img src="logos/finom.png">Finom</span></td><td class="c4">4</td><td class="c1">1</td><td class="c0">0</td><td class="c3">3</td><td class="c4">4</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('kontist')"><img src="logos/kontist.png">Kontist</span></td><td class="c3">3</td><td class="c0">0</td><td class="c3">3</td><td class="c4">4</td><td class="c3">3</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('holvi')"><img src="logos/holvi.png">Holvi</span></td><td class="c3">3</td><td class="c0">0</td><td class="c2">2</td><td class="c3">3</td><td class="c5">5</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('vivid')"><img src="logos/vivid.jpeg">Vivid</span></td><td class="c4">4</td><td class="c0">0</td><td class="c0">0</td><td class="c4">4</td><td class="c4">4</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('revolut')"><img src="logos/revolut.png">Revolut</span></td><td class="c5">5</td><td class="c0">0</td><td class="c0">0</td><td class="c1">1</td><td class="c0">0</td><td class="c3">3</td></tr>
+<tr class="qr"><td><span class="lp" onclick="showModal('qonto')"><img src="logos/qonto.png">Qonto</span></td><td class="c4">4</td><td class="c0">0</td><td class="c0">0</td><td class="c3">3</td><td class="c3">3</td><td class="c4">4</td></tr>
+<tr><td><span class="lp" onclick="showModal('lexware')"><img src="logos/lexware.png">Lexware</span></td><td class="c2">2</td><td class="c0">0</td><td class="c0">0</td><td class="c5">5</td><td class="c4">4</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('accountable')"><img src="logos/accountable.png">Accountable</span></td><td class="c2">2</td><td class="c0">0</td><td class="c0">0</td><td class="c5">5</td><td class="c4">4</td><td class="c0">0</td></tr>
+<tr><td><span class="lp" onclick="showModal('sumup')"><img src="logos/sumup.png">SumUp</span></td><td class="c3">3</td><td class="c0">0</td><td class="c2">2</td><td class="c1">1</td><td class="c3">3</td><td class="c5">5</td></tr>
+</tbody></table></div>
+<div class="rv" style="display:flex;gap:24px;margin-top:16px">
+<div style="background:var(--ag);padding:12px 16px;border-radius:8px;font-size:12px"><strong>Incumbent avg. cash:</strong> 3.25 &nbsp;vs&nbsp; <strong>Neobank avg:</strong> 0.5</div>
+<div style="background:var(--ag);padding:12px 16px;border-radius:8px;font-size:12px"><strong>Incumbent avg. lending:</strong> 4.0 &nbsp;vs&nbsp; <strong>Neobank avg:</strong> 1.2</div>
+</div>
+</div></section>
+
+<!-- SLIDE 8: FRICTIONS -->
+<section class="s sd" id="s8"><div class="ct">
+<div class="rv"><span class="sl">Friction points</span><h2 class="st">What sole proprietors <em>actually</em> struggle with</h2><p class="ss">Three friction points — each rooted in an infrastructure gap, not a UX problem.</p></div>
+<div class="fc rv"><div class="fn">1</div><div><blockquote>"I take cash from customers and I have nowhere to put it."</blockquote><p>53% of POS transactions are cash. Retail, gastronomy, health, services, arts = <strong>39% of TAM (~1.04M enterprises)</strong>. Zero neobanks offer native cash deposits. Only N26 at 1.5% fee. Sole proprietors maintain a Sparkasse at €5–€20/month specifically for this.</p></div></div>
+<div class="fc rv"><div class="fn">2</div><div><blockquote>"My client is 45 days late and my Krankenkasse won't wait."</blockquote><p>30–90 day payment terms standard. Sparkasse Dispo at 11.6–11.7% avg. APR, up to 15.6%. At their neobank: <strong>no Dispo at all</strong>. Only Kontist offers €500–€3K. The incumbent's Dispo is used because nothing else exists.</p></div></div>
+<div class="fc rv"><div class="fn">3</div><div><blockquote>"Every quarter I lose a weekend to Umsatzsteuer."</blockquote><p>8.7% of working time = 11 hrs/month on bureaucracy. 52% name tax as worst burden. 75%+ use paper Pendelordner. Only 4 of 14 offer integrated filing. <strong>This space is contested and closing.</strong></p></div></div>
+</div></section>
+
+<!-- SLIDE 9: OPPORTUNITY -->
+<section class="s ab" id="s9"><div class="ct">
+<div class="rv"><span class="sl">The highest-opportunity gap</span><h2 class="st" style="color:#fff">Cash deposit access is the<br>single highest-leverage <em>move.</em></h2></div>
+<div class="og4 rv">
+<div class="o4"><div class="big">~1.04M</div><h4>Wide reach</h4><p>Businesses turning over ~€286B/year operate in cash-intensive industries (retail, gastronomy, health, services, arts) — 39% of the 2.63M TAM.</p></div>
+<div class="o4"><div class="big">Daily</div><h4>Frequent pain</h4><p>Cash is received daily. Deposits at local banks are made weekly. This determines which bank a sole proprietor can use — not preference, infrastructure.</p></div>
+<div class="o4"><div class="big">0</div><h4>Near-zero competition</h4><p>No neobank apart from N26 (1.5% fee, €999/24h cap) addresses this. Zero specialized fintechs offer cash deposits. The gap is structurally empty.</p></div>
+<div class="o4"><div class="big">24%</div><h4>Revenue expansion</h4><p>Current customers bring only ~24% of turnover to Qonto (€42K vs. €177K avg.). Cash deposit access is a direct path to expanding wallet penetration and ARPU.</p></div>
+</div>
+</div></section>
+
+<!-- SLIDE 10: HOW -->
+<section class="s dk" id="s10"><div class="ct">
+<div class="rv"><span class="sl">How to get there</span><h2 class="st" style="color:#fff">Not a product build.<br>A <em>partnership negotiation.</em></h2></div>
+<div class="eb rv"><h4>1. Proven model</h4><p>N26 deposits cash via REWE, Penny, dm, Rossmann — without building physical infrastructure. It contracted existing retail networks.</p></div>
+<div class="eb rv"><h4>2. Commercial, not technical</h4><p>The challenge is fee structure, settlement terms, and minimum volumes. No banking licence change required. No new technology needed.</p></div>
+<div class="eb rv"><h4>3. Unorthodox, not impossible</h4><p>No neobank has made cash deposits a strategic priority. The partner infrastructure is already live in Germany. First mover advantage is available.</p></div>
+<p class="rv" style="text-align:center;font-family:var(--fd);font-size:20px;color:var(--a2);margin-top:48px;font-style:italic">"The German SME banking market is wide open — but the door is physical, not digital.<br>The neobank that solves for cash solves for market entry."</p>
+</div></section>
+
+<!-- FILES -->
+<section class="s sd" id="files"><div class="ct">
+<div class="rv"><span class="sl">Research library</span><h2 class="st">Companion <em>files</em></h2></div>
+<div class="fg rv">
+<a class="flink" href="Task_1_4_Strategic_Landscape_Synthesis.docx"><div class="ft dx">docx</div><h5>Strategic Synthesis</h5><span>Full landscape analysis</span></a>
+<a class="flink" href="Task_1_1_Incumbent_Banks_Research__1_.docx"><div class="ft dx">docx</div><h5>Incumbent Banks</h5><span>Sparkasse, Commerzbank, ING, FYRST, DB</span></a>
+<a class="flink" href="Task_1_2_Neobanks_GroupA_FINAL.docx"><div class="ft dx">docx</div><h5>Neobanks Group A</h5><span>Revolut, N26, Finom, Kontist, Holvi, Vivid</span></a>
+<a class="flink" href="Task_1_3_Specialized_Fintechs_Serving_German_Sole_Proprietors_and_Microbusinesses.docx"><div class="ft dx">docx</div><h5>Specialized Fintechs</h5><span>Lexware, Accountable, SumUp, PayPal, sevDesk, Stripe, Norman</span></a>
+<a class="flink" href="CJM_Incumbent_Banks_Germany.html"><div class="ft ht">html</div><h5>CJM — Incumbents</h5><span>Customer journey map · 8 stages</span></a>
+<a class="flink" href="CJM_Neobanks_GroupA.html"><div class="ft ht">html</div><h5>CJM — Neobanks</h5><span>6 players × 8 stages</span></a>
+</div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="foot"><div class="ct">
+<div><h4>Methodology</h4><p>18 players across 3 competitive tiers. Desk research, product teardowns, pricing analysis, customer journey mapping. 220+ unique sources including KfW, ECB, Bundesbank, Bain, BStBK, IfM Bonn, Freelancer-Kompass, Creditreform, Bitkom, VGSD, and Bertelsmann Stiftung.</p></div>
+<div><h4>Companion research</h4><p>Incumbent Banks (5 players, 30+ sources)<br>Neobanks Group A (6 players, 24+ sources)<br>Specialized Fintechs (7 players, 159+ sources)<br>Customer Journey Maps: Incumbents + Neobanks<br><br>Market Entry Research · Orkhan H. Garibov · May 2026</p></div>
+<div class="copy">Market Entry Research — Identifying Strategic Opportunity</div>
+</div></footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+<div class="modal" id="modal">
+<button class="modal-close" onclick="closeModal()">✕</button>
+<img id="mLogo" src="" alt="">
+<h3 id="mName"></h3>
+<div id="mTier" class="tier-tag"></div>
+<h4>Value proposition</h4>
+<p id="mVP"></p>
+<h4>Competitive advantage</h4>
+<p id="mCA"></p>
+</div>
+</div>
+
+<script>
+// Data
+const D={
+sparkasse:{n:'Sparkasse',t:'inc',l:'logos/sparkasse.png',vp:'Branch access, cash handling, and instant Dispo for any legal form — backed by the densest physical network in Germany.',ca:'Regulatory trust (EdB), 75% SME reach, deepest branch/ATM infrastructure, local Hausbank relationship.'},
+volksbank:{n:'Volksbank',t:'inc',l:'logos/volksbank.png',vp:'Cooperative banking with local advisory, cash handling, and full deposit insurance for every legal form.',ca:'Local ownership model, community trust, BVR cooperative guarantee beyond EdB.'},
+commerzbank:{n:'Commerzbank',t:'inc',l:'logos/commerzbank.png',vp:'Business banking with overdraft and Geschäftskredit up to six figures — accessible 90% digitally with branch fallback.',ca:'Mittelstand brand positioning, dedicated SME advisory, 90%+ digital contact rate.'},
+ing:{n:'ING',t:'inc',l:'logos/ing.png',vp:'Fully digital Geschäftskonto at near-zero cost with credit lines up to €250K.',ca:'9M+ existing personal customer cross-sell base, competitive pricing, fully digital onboarding.'},
+fyrst:{n:'FYRST',t:'inc',l:'logos/fyrst.png',vp:'Free Geschäftskonto with full German deposit insurance and Cash Group access — lowest-cost entry backed by Deutsche Bank licence.',ca:'€0 tier with EdB, Cash Group ATM/deposit access, Deutsche Bank infrastructure.'},
+n26:{n:'N26',t:'neo',l:'logos/n26.png',vp:'Zero-fee mobile Geschäftskonto with BaFin-regulated deposit protection and cashback.',ca:'Only neobank with direct German banking licence. 10-year brand recognition in Germany.'},
+finom:{n:'Finom',t:'neo',l:'logos/finom.png',vp:'Single-login platform combining Geschäftskonto, AI-assisted bookkeeping, invoicing, and DATEV export — for every legal form.',ca:'Deepest integrated workflow among neobanks. €300M total funding. Germany as declared core market.'},
+kontist:{n:'Kontist',t:'neo',l:'logos/kontist.png',vp:'Real-time tax-reserve automation — calculates and ring-fences income tax and VAT on every incoming payment.',ca:'Only account auto-reserving tax per transaction. Embedded credit via Solaris (€500–€3K).'},
+holvi:{n:'Holvi',t:'neo',l:'logos/holvi.png',vp:'Invoicing-to-accounting workflow with full e-invoicing compliance (Peppol/ZUGFeRD/XRechnung).',ca:'Most complete e-invoicing among neobanks. Gründerkonto for share capital deposit before registration.'},
+vivid:{n:'Vivid',t:'neo',l:'logos/vivid.jpeg',vp:'Free integrated banking with VAT filing, bookkeeping, invoicing, and direct Finanzamt submission at €0/month.',ca:'Deepest free tier on market: full accounting + tax at zero cost. Pivoted from retail to SME.'},
+revolut:{n:'Revolut',t:'neo',l:'logos/revolut.png',vp:'Multi-currency business account with real-time FX at near-interbank rates across 34+ currencies.',ca:'Best-in-class FX. Most cost-efficient platform for cross-border sole proprietors.'},
+qonto:{n:'Qonto',t:'neo',l:'logos/qonto.png',vp:'Scalable business operating account with team expense management, multi-entity support, and integrated invoicing.',ca:'Pan-European scale (600K+ customers). Penta DE base. Payment acquiring (Tap to Pay, online checkout).'},
+lexware:{n:'Lexware Office',t:'fin',l:'logos/lexware.png',vp:'Native Geschäftskonto embedded inside Germany\'s leading cloud bookkeeping tool — with DATEV, e-invoicing, and UStVA in one login.',ca:'400K+ installed base. Only provider with native DATEV integration. GoBD-compliant bookkeeping.'},
+accountable:{n:'Accountable',t:'fin',l:'logos/accountable.png',vp:'Free Geschäftskonto with end-to-end tax filing from receipt scan to ELSTER submission.',ca:'Only platform replacing both bank and Steuerberater for routine compliance. English-language.'},
+sumup:{n:'SumUp',t:'fin',l:'logos/sumup.png',vp:'POS terminal, card acquiring, and Geschäftskonto with next-day settlement in one stack.',ca:'Only player owning both payment acceptance and banking layer. Merchant Cash Advance available.'}
+};
+
+function showModal(k){const d=D[k];if(!d)return;document.getElementById('mLogo').src=d.l;document.getElementById('mName').textContent=d.n;const tt=document.getElementById('mTier');tt.textContent=d.t==='inc'?'Incumbent':d.t==='neo'?'Neobank':'Fintech';tt.className='tier-tag '+d.t;document.getElementById('mVP').textContent=d.vp;document.getElementById('mCA').textContent=d.ca;document.getElementById('modalBg').classList.add('show');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalBg').classList.remove('show');document.body.style.overflow=''}
+
+// Scroll reveal
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Nav
+const nv=document.getElementById('nav');
+new IntersectionObserver(([e])=>{nv.classList.toggle('on',!e.isIntersecting)},{threshold:0}).observe(document.querySelector('.hero'));
+document.querySelectorAll('.s[id]').forEach(s=>new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){document.querySelectorAll('.ni a').forEach(a=>a.classList.remove('ac'));const l=document.querySelector(`.ni a[href="#${en.target.id}"]`);if(l)l.classList.add('ac')}})},{threshold:.2}).observe(s));
+</script>
+</body>
+</html>
